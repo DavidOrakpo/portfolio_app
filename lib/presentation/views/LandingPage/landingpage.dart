@@ -51,7 +51,7 @@ class _LandingPageState extends State<LandingPage> {
                   // alignment: Alignment.center,
                   padding: const EdgeInsets.all(24),
                   width: screenSize.width * 0.8,
-                  height: screenSize.height * 0.45,
+                  height: screenSize.height * 0.48,
                   decoration: const BoxDecoration(
                     color: Colors.white,
                   ),

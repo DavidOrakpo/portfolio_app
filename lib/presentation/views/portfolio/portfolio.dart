@@ -34,7 +34,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "EXPERIENCE",
+                  "PORTFOLIO",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,

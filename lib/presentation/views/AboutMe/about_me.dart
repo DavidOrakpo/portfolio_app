@@ -154,20 +154,35 @@ class _AboutMePageState extends State<AboutMePage> {
                               ),
                             ),
                           ),
-                          Positioned(
-                            top: -10,
-                            right: 20,
-                            child: Transform.scale(
-                              scale: 1.4,
-                              child: Image.asset(
-                                "assets/images/image_profile4.png",
-                                alignment: Alignment.centerRight,
-                                width: 150,
-                                height: 250,
-                                fit: BoxFit.fitHeight,
-                              ),
-                            ),
-                          )
+                          Responsive.isTablet(context)
+                              ? Positioned(
+                                  bottom: 0,
+                                  right: 20,
+                                  child: Transform.scale(
+                                    scale: 1.4,
+                                    child: Image.asset(
+                                      "assets/images/image_profile4.png",
+                                      alignment: Alignment.centerRight,
+                                      width: 150,
+                                      height: size.height * 0.28,
+                                      fit: BoxFit.fitHeight,
+                                    ),
+                                  ),
+                                )
+                              : Positioned(
+                                  top: -10,
+                                  right: 20,
+                                  child: Transform.scale(
+                                    scale: 1.4,
+                                    child: Image.asset(
+                                      "assets/images/image_profile4.png",
+                                      alignment: Alignment.centerRight,
+                                      width: 150,
+                                      height: 250,
+                                      fit: BoxFit.fitHeight,
+                                    ),
+                                  ),
+                                )
                         ],
                       ),
                     ),
