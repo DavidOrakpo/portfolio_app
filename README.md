@@ -7,7 +7,7 @@ Hi! My name is David Orakpo. I am a Junior Software Engineer and current intern 
 - Portfolio
 - Settings
 
-The app supports features such as Dark Mode (auto and manual switching), responsiveness to phone Orientation as well.
+The app supports features such as Dark Mode (auto and manual switching), responsiveness to phone Orientation as well. The minimum sdk level for this app is Android 12 (API 31) as well.
 
 
 
@@ -31,9 +31,11 @@ I made use of a few libraries to accomplish this project. Their names along with
 If I had more time, I would have loved to expand more on the Localization. At the moment, I was not able to figure out an efficient way to automatically localize into other languages. But I will continue to research this
 
 # Challenges Faced
-My Major challenge during this project was coming up with a design scheme and theme. I am used to working along side Product Designers who are usually responsible for this part. However, it was a much needed challenge to expose me into the world of design.
+My Major challenge during this project was coming up with a design scheme and theme. I am used to working along side Product Designers who are usually responsible for this part. However, it was a much needed challenge to expose me into the world of design. I overcame this by watching alot of youtube videos on introduction to design. I also looked at the HNG design handbook posted on their twitter.
 
 # Links and Files
+
+The link to the apk can be foud [here](https://drive.google.com/drive/folders/1iXIpE2RxhAJMTwtcWZxI8ndY9YMdFGDg?usp=sharing), while the appetize link can be foud [here](https://appetize.io/app/brnppglssav3ogdhklefq3dtda?device=pixel4&osVersion=12.0&scale=75)
 
 
 
