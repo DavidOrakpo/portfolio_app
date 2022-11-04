@@ -69,6 +69,14 @@ enum SocialInformation {
         size: 34,
         color: Color.fromRGBO(5, 70, 123, 1),
       )),
+  LinkedIn(
+      title: "LinkedIn link",
+      subtitle: "https://www.linkedin.com/in/davidorakpo",
+      widget: FaIcon(
+        FontAwesomeIcons.linkedinIn,
+        color: Color.fromRGBO(5, 70, 123, 1),
+        size: 34,
+      )),
   Twitter(
       title: "Twitter",
       subtitle: "https://twitter.com/DavidOrakpo",

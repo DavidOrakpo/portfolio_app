@@ -137,6 +137,24 @@ class _BasicInformationTileState extends State<BasicInformationTile> {
                           return ListTile(
                             contentPadding: const EdgeInsets.all(0),
                             onTap: () async {
+                              if (item == SocialInformation.LinkedIn) {
+                                if (await canLaunchUrl(Uri.https(
+                                    "linkedin.com", "/in/davidorakpo"))) {
+                                  final bool nativeAppLaunchSucceeded =
+                                      await launchUrl(
+                                          Uri.https("linkedin.com",
+                                              "/in/davidorakpo"),
+                                          mode: LaunchMode.externalApplication);
+                                  if (!nativeAppLaunchSucceeded) {
+                                    await launchUrl(
+                                        Uri.https(
+                                            "linkedin.com", "/in/davidorakpo"),
+                                        mode: LaunchMode.inAppWebView);
+                                  }
+                                } else {
+                                  throw "An error occured";
+                                }
+                              }
                               if (item == SocialInformation.Twitter) {
                                 if (await canLaunchUrl(
                                     Uri.https("twitter.com", "/DavidOrakpo"))) {
