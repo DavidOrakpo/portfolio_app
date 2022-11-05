@@ -9,7 +9,8 @@ Hi! My name is David Orakpo. I am a Junior Software Engineer and current intern 
 
 The app supports features such as Dark Mode (auto and manual switching), responsiveness to phone Orientation as well. The minimum sdk level for this app is Android 12 (API 31) as well.
 
-
+# Description of Code Base
+The Code base applies the MVVM design architecture. However, I made use of enums as my models were not going to change in the life cycle of the app. For example, I stored the details of my Contact Information and Social Information in enum classes. These classes have corresponding fields such as Address, education and so on. From here, I make a list of all the values in both enums and attach them to a List View to display the value concisely
 
 # Design
 The design of the app was inspired by a mix of other projects I have worked on as well as Material Design. As these were personal/job projects, the designs were either original content, or belonging to the organization I work for.
