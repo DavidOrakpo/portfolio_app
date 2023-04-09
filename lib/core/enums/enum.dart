@@ -93,10 +93,22 @@ enum SocialInformation {
 }
 
 enum Companies {
+  YieldVest(
+      nameOfCompany: "Yield Vest",
+      jobPosition: "Flutter Desktop Team Lead",
+      date: "November 2022 - Present",
+      imagePath: "assets/images/yieldvest.png",
+      address: "HNG i9 Internship",
+      listOfDuties: [
+        "Emerged as a Finalist from over 12,000 applicants",
+        "Co-ordinated and managed a suite of developers in building the desktop app for Yield Vest",
+        "Implemented UI designs and end points to produce a functional product",
+      ]),
   Heckerbella(
       nameOfCompany: "Heckerbella",
       jobPosition: "Junior Flutter Developer",
       date: "April 2022 - Present",
+      imagePath: "assets/images/heckerbella.png",
       address: "14 Adetokunbo Ademola Street, Victoria Island Lagos",
       listOfDuties: [
         "Implemented UI designs into Page layouts using Dart",
@@ -107,6 +119,7 @@ enum Companies {
       nameOfCompany: "Techies InfoSystem",
       jobPosition: "Xamarin Developer",
       date: "November 2021 - April 2022",
+      imagePath: "assets/images/techies.png",
       address: "Lamlat House, 270 Ikorodu-Ososun Rd, Obanikoro 102216, Lagos",
       listOfDuties: [
         "Implemented UI designs into Page layouts using XAML and C#",
@@ -118,6 +131,7 @@ enum Companies {
       jobPosition: "Mentor Group Leader GADS 19",
       date: "June 2019 - December 2019",
       address: "55 Moleye Street Lagos",
+      imagePath: "assets/images/ANDELA.jpg",
       listOfDuties: [
         "Provided support to ongoing participants in the Google Andela Scholarship Program '19.",
         "Over saw the learning and progress of over 50 candidates in Team 45's cohort",
@@ -129,8 +143,9 @@ enum Companies {
     required this.date,
     required this.address,
     required this.listOfDuties,
+    required this.imagePath,
   });
 
   final List<String> listOfDuties;
-  final String? nameOfCompany, jobPosition, date, address;
+  final String? nameOfCompany, jobPosition, date, address, imagePath;
 }

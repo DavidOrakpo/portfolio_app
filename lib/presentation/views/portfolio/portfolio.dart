@@ -14,6 +14,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
       eatOnGateController,
       fourPointsController,
       hopeController,
+      hmsController,
       wholletController;
 
   @override
@@ -49,6 +50,13 @@ class _PortfolioPageState extends State<PortfolioPage> {
                   height: 2,
                   thickness: 1,
                 ),
+                const SizedBox(
+                  height: 24,
+                ),
+                VideoTile(
+                    controller: hmsController,
+                    title: "HMS",
+                    videoPath: "assets/videos/hms.mp4"),
                 const SizedBox(
                   height: 24,
                 ),

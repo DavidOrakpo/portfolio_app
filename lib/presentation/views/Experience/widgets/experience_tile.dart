@@ -6,20 +6,21 @@ class ExperienceTile extends StatelessWidget {
     Key? key,
     // this.date,
     required this.company,
-    this.onTap,
-    this.imagePath,
     this.backgroudColor,
   })  : date = company!.date,
         title = company.jobPosition,
         super(key: key);
-  final String? title, imagePath, date;
-  final void Function()? onTap;
+  final String? title, date;
+
   final Color? backgroudColor;
   final Companies? company;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        showExperienceDetails(
+            context, company!, MediaQuery.of(context).size.height * 0.65);
+      },
       child: Container(
         height: 246,
         width: double.infinity,
@@ -45,7 +46,7 @@ class ExperienceTile extends StatelessWidget {
               child: Container(
                 color: backgroudColor ?? Colors.black,
                 child: Image.asset(
-                  imagePath ?? "assets/images/heckerbella.png",
+                  company!.imagePath!,
                   fit: BoxFit.fitWidth,
                   height: 170,
                   width: double.infinity,
@@ -76,6 +77,173 @@ class ExperienceTile extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void showExperienceDetails(
+      BuildContext context, Companies companies, double bottomSheetHeight) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      isDismissible: true,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+        top: Radius.circular(24),
+      )),
+      context: context,
+      builder: (context) {
+        return Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.tertiary.withOpacity(0.7),
+            borderRadius: BorderRadius.circular(24),
+          ),
+          child: SizedBox(
+            height: bottomSheetHeight,
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  // mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              companies.name,
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onPrimaryContainer,
+                              ),
+                            ),
+                            Container(
+                              height: 3,
+                              width: 80,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onPrimaryContainer,
+                            )
+                          ],
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(
+                            Icons.cancel_rounded,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer,
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.location_city_rounded,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      title: Text(
+                        "Address",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 24,
+                        ),
+                      ),
+                      subtitle: Text(
+                        companies.address!,
+                        style: TextStyle(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primary
+                              .withOpacity(0.6),
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.work_rounded,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      title: Text(
+                        "Job Position",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 24,
+                        ),
+                      ),
+                      subtitle: Text(
+                        companies.jobPosition!,
+                        style: TextStyle(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primary
+                              .withOpacity(0.6),
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      "Duties",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Container(
+                      constraints: const BoxConstraints(
+                        minHeight: 80,
+                        maxHeight: 200,
+                      ),
+                      child: ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: companies.listOfDuties.length,
+                        itemBuilder: (context, index) {
+                          var item = companies.listOfDuties[index];
+                          return ListTile(
+                            leading: Text(
+                              "*",
+                              style: TextStyle(
+                                fontSize: 30,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                            title: Text(
+                              item,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

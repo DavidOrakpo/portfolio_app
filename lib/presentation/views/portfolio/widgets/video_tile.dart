@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoTile extends StatefulWidget {
-  VideoTile({
+  const VideoTile({
     Key? key,
     required this.controller,
     required this.videoPath,
     required this.title,
   }) : super(key: key);
 
-  VideoPlayerController? controller;
-  String videoPath, title;
+  final VideoPlayerController? controller;
+  final String videoPath, title;
   @override
   State<VideoTile> createState() => _VideoTileState();
 }
@@ -46,7 +46,7 @@ class _VideoTileState extends State<VideoTile> {
         controller1.play();
       },
       child: Container(
-        height: 560,
+        height: 600,
         width: double.infinity,
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
@@ -71,7 +71,7 @@ class _VideoTileState extends State<VideoTile> {
                 color: Colors.black,
                 child: (controller1.value.isInitialized)
                     ? SizedBox(
-                        height: 470,
+                        height: 510,
                         child: Center(
                           child: AspectRatio(
                             aspectRatio: controller1.value.aspectRatio,
