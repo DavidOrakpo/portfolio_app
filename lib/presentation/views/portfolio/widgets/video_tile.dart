@@ -51,10 +51,10 @@ class _VideoTileState extends State<VideoTile> {
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: Theme.of(context).colorScheme.primaryContainer,
+          color: Theme.of(context).colorScheme.onTertiary,
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).primaryColor.withOpacity(0.25),
+              color: Theme.of(context).primaryColor.withOpacity(0.2),
               blurRadius: 15,
               spreadRadius: 10,
             ),
@@ -92,9 +92,9 @@ class _VideoTileState extends State<VideoTile> {
             ),
             Text(
               widget.title,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 20,
-                color: Color.fromRGBO(5, 70, 123, 1),
+                color: Theme.of(context).colorScheme.primaryContainer,
               ),
             ),
             const SizedBox(

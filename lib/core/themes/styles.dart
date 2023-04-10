@@ -1,25 +1,57 @@
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Styles {
+  static ThemeData flexThemeData(bool isDarkTheme, BuildContext context) {
+    return isDarkTheme
+        ? FlexThemeData.dark(
+            scheme: FlexScheme.deepBlue,
+            surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
+            blendLevel: 13,
+            subThemesData: const FlexSubThemesData(
+              blendOnLevel: 20,
+              useTextTheme: true,
+            ),
+            visualDensity: FlexColorScheme.comfortablePlatformDensity,
+          )
+        : FlexThemeData.light(
+            scheme: FlexScheme.deepBlue,
+            surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
+            blendLevel: 7,
+            subThemesData: const FlexSubThemesData(
+              blendOnLevel: 10,
+              blendOnColors: false,
+              useTextTheme: true,
+            ),
+            visualDensity: FlexColorScheme.comfortablePlatformDensity,
+          );
+  }
+
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
       // colorSchemeSeed: const Color.fromRGBO(5, 70, 123, 1),
       colorScheme: ColorScheme.fromSeed(
         seedColor: const Color.fromRGBO(5, 70, 123, 1),
-        primaryContainer: Colors.white,
+        primaryContainer:
+            isDarkTheme ? Colors.white : const Color.fromRGBO(5, 70, 123, 1),
         primary:
             isDarkTheme ? Colors.white : const Color.fromRGBO(5, 70, 123, 1),
         tertiary:
             isDarkTheme ? const Color.fromRGBO(5, 70, 123, 1) : Colors.white,
+        onTertiary:
+            isDarkTheme ? Color.fromARGB(117, 44, 122, 186) : Colors.white,
         onPrimaryContainer:
             isDarkTheme ? Colors.white54 : Color.fromARGB(255, 17, 60, 95),
         inversePrimary: isDarkTheme ? Colors.white : Colors.black,
       ),
-      scaffoldBackgroundColor: isDarkTheme ? Colors.black : Colors.white,
+      scaffoldBackgroundColor:
+          isDarkTheme ? Color.fromARGB(255, 2, 11, 31) : Colors.white,
       textTheme: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme),
 
-      unselectedWidgetColor: isDarkTheme ? Colors.grey : Colors.grey.shade300,
+      unselectedWidgetColor: isDarkTheme
+          ? Color.fromARGB(124, 228, 217, 217)
+          : Colors.grey.shade400,
       // primaryColor: isDarkTheme ? Colors.white : Color.fromRGBO(5, 70, 123, 1),
       backgroundColor: isDarkTheme ? Colors.black : const Color(0xffF1F5FB),
       indicatorColor: isDarkTheme

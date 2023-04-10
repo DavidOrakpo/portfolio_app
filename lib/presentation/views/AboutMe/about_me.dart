@@ -145,10 +145,10 @@ class _AboutMePageState extends State<AboutMePage> {
                                 height: 250,
                                 width: size.width * 0.45,
                                 decoration: BoxDecoration(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .primary
-                                      .withOpacity(0.8),
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? const Color.fromRGBO(5, 70, 123, 1)
+                                      : Color.fromARGB(177, 57, 73, 85),
                                 ),
                                 // height: 250,
                               ),

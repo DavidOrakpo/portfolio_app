@@ -106,7 +106,7 @@ enum Companies {
       ]),
   Heckerbella(
       nameOfCompany: "Heckerbella",
-      jobPosition: "Junior Flutter Developer",
+      jobPosition: "Flutter Mobile Engineer",
       date: "April 2022 - Present",
       imagePath: "assets/images/heckerbella.png",
       address: "14 Adetokunbo Ademola Street, Victoria Island Lagos",

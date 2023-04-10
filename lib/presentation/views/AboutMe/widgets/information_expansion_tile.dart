@@ -76,7 +76,7 @@ class _BasicInformationTileState extends State<BasicInformationTile> {
                       color: Theme.of(context)
                           .colorScheme
                           .inversePrimary
-                          .withOpacity(0.6))),
+                          .withOpacity(0.7))),
               const SizedBox(
                 height: 4,
               ),
@@ -132,6 +132,7 @@ class _BasicInformationTileState extends State<BasicInformationTile> {
                         const BoxConstraints(maxHeight: 400, minHeight: 56.0),
                     child: ListView.separated(
                         shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           var item = contactInfoList[index];
                           return ListTile(

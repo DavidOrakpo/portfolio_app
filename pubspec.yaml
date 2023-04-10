@@ -49,6 +49,7 @@ dependencies:
   font_awesome_flutter: ^10.2.1
   video_player: ^2.4.7
   intl: ^0.17.0
+  flex_color_scheme: ^7.0.1
 
 
 dev_dependencies:

@@ -21,7 +21,7 @@ class _ExperiencePageState extends State<ExperiencePage> {
               top: 24.0,
               right: 24,
               left: 24,
-              bottom: 70,
+              bottom: 70 + 24,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,

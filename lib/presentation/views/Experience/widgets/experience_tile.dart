@@ -19,7 +19,7 @@ class ExperienceTile extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         showExperienceDetails(
-            context, company!, MediaQuery.of(context).size.height * 0.65);
+            context, company!, MediaQuery.of(context).size.height * 0.75);
       },
       child: Container(
         height: 246,
@@ -27,7 +27,7 @@ class ExperienceTile extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: Theme.of(context).colorScheme.primaryContainer,
+          color: Theme.of(context).colorScheme.onTertiary,
           boxShadow: [
             BoxShadow(
               color: Theme.of(context).primaryColor.withOpacity(0.25),
@@ -59,7 +59,8 @@ class ExperienceTile extends StatelessWidget {
             Text(
               title ?? "Junior Flutter Developer",
               style: TextStyle(
-                  fontSize: 20, color: Theme.of(context).primaryColor),
+                  fontSize: 20,
+                  color: Theme.of(context).colorScheme.primaryContainer),
             ),
             const SizedBox(
               height: 5,
@@ -187,6 +188,29 @@ class ExperienceTile extends StatelessWidget {
                       ),
                       subtitle: Text(
                         companies.jobPosition!,
+                        style: TextStyle(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primary
+                              .withOpacity(0.6),
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.calendar_month,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      title: Text(
+                        "Duration",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 24,
+                        ),
+                      ),
+                      subtitle: Text(
+                        companies.date!,
                         style: TextStyle(
                           color: Theme.of(context)
                               .colorScheme
