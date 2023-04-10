@@ -1,6 +1,6 @@
 # Welcome to My Portfolio!
 
-Hi! My name is David Orakpo. I am a Junior Software Engineer and current intern of HNG 9 2022 in the mobile dev track.  This project is for said track, stage 2. The app is a fairly simple one, consisting of 5 screens:
+Hi! My name is David Orakpo. I am a Software Engineer specialized in Flutter/Xamarin. This project represents my interactive portfolio of the apps and designs I have worked on or reproduced. The app is a fairly simple one, consisting of 5 screens:
 - Landing Page
 - About Me
 - Experience
@@ -31,8 +31,8 @@ I made use of a few libraries to accomplish this project. Their names along with
 # Wish List of Features
 If I had more time, I would have loved to expand more on the Localization. At the moment, I was not able to figure out an efficient way to automatically localize into other languages. But I will continue to research this
 
-# Challenges Faced
-My Major challenge during this project was coming up with a design scheme and theme. I am used to working along side Product Designers who are usually responsible for this part. However, it was a much needed challenge to expose me into the world of design. I overcame this by watching alot of youtube videos on introduction to design. I also looked at the HNG design handbook posted on their twitter.
+<!-- # Challenges Faced
+My Major challenge during this project was coming up with a design scheme and theme. I am used to working along side Product Designers who are usually responsible for this part. However, it was a much needed challenge to expose me into the world of design. I overcame this by watching alot of youtube videos on introduction to design. I also looked at the HNG design handbook posted on their twitter. -->
 
 # Links and Files
 
