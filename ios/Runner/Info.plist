@@ -3,10 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<key>LSSupportsOpeningDocumentsInPlace</key>
-<true/>
-<key>UIFileSharingEnabled</key>
-<true/>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Portfolio App</string>
