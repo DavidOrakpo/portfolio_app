@@ -28,9 +28,6 @@ I made use of a few libraries to accomplish this project. Their names along with
 - Video Player: I used this package to process and play videos present within the app
 - Intl: This package is responsible for localization to different languages
 
-# Wish List of Features
-If I had more time, I would have loved to expand more on the Localization. At the moment, I was not able to figure out an efficient way to automatically localize into other languages. But I will continue to research this
-
 <!-- # Challenges Faced
 My Major challenge during this project was coming up with a design scheme and theme. I am used to working along side Product Designers who are usually responsible for this part. However, it was a much needed challenge to expose me into the world of design. I overcame this by watching alot of youtube videos on introduction to design. I also looked at the HNG design handbook posted on their twitter. -->
 

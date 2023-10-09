@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:portfolio_app/presentation/views/LandingPage/landingpage.dart';
 import 'package:provider/provider.dart';
 
@@ -8,6 +9,8 @@ import 'core/themes/styles.dart';
 import 'core/utility/routes/routes_manager.dart';
 
 void main() {
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(const MyApp());
 }
 

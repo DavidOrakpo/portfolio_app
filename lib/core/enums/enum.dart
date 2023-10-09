@@ -93,21 +93,48 @@ enum SocialInformation {
 }
 
 enum Companies {
+  WEquil(
+    nameOfCompany: "WEquil Group",
+    jobPosition: "Flutter Engineer (Contract)",
+    date: "April 2023 - Present",
+    imagePath: "assets/images/wequil.png",
+    address: "Remote (USA)",
+    listOfDuties: [
+      "Implemented Classrooms and Digital Resume feature",
+      "Designed and Developed Classroom web pages",
+      "Implement secure and scalable interfaces between the mobile app and internet-based services and APIs",
+      "Continuously optimize and improve the app's performance, user interface, and functionality",
+    ],
+  ),
+  Bani(
+    nameOfCompany: "Bani Africa",
+    jobPosition: "Flutter Lead Engineer",
+    date: "April 2023 - Present",
+    imagePath: "assets/images/bani.png",
+    address: "Remote",
+    listOfDuties: [
+      "Collaborate with the Product Development team to understand user requirements",
+      "Design and develop Bani Shopper Mobile application from UI designs and frameworks",
+      "Implement secure and scalable interfaces between the mobile app and internet-based services and APIs",
+      "Continuously optimize and improve the app's performance, user interface, and functionality",
+    ],
+  ),
   YieldVest(
-      nameOfCompany: "Yield Vest",
-      jobPosition: "Flutter Desktop Team Lead",
-      date: "November 2022 - Present",
-      imagePath: "assets/images/yieldvest.png",
-      address: "HNG i9 Internship",
-      listOfDuties: [
-        "Emerged as a Finalist from over 12,000 applicants",
-        "Co-ordinated and managed a suite of developers in building the desktop app for Yield Vest",
-        "Implemented UI designs and end points to produce a functional product",
-      ]),
+    nameOfCompany: "Yield Vest",
+    jobPosition: "Flutter Desktop Team Lead",
+    date: "November 2022 - Februrary 2023",
+    imagePath: "assets/images/yieldvest.png",
+    address: "HNG i9 Internship",
+    listOfDuties: [
+      "Emerged as a Finalist from over 12,000 applicants",
+      "Co-ordinated and managed a suite of developers in building the desktop app for Yield Vest",
+      "Implemented UI designs and end points to produce a functional product",
+    ],
+  ),
   Heckerbella(
       nameOfCompany: "Heckerbella",
       jobPosition: "Flutter Mobile Engineer",
-      date: "April 2022 - Present",
+      date: "April 2022 - April 2023",
       imagePath: "assets/images/heckerbella.png",
       address: "14 Adetokunbo Ademola Street, Victoria Island Lagos",
       listOfDuties: [

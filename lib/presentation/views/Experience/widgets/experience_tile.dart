@@ -237,7 +237,7 @@ class ExperienceTile extends StatelessWidget {
                         maxHeight: 200,
                       ),
                       child: ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         itemCount: companies.listOfDuties.length,
                         itemBuilder: (context, index) {
                           var item = companies.listOfDuties[index];
