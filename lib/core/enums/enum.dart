@@ -93,15 +93,26 @@ enum SocialInformation {
 }
 
 enum Companies {
+  Gate(
+    nameOfCompany: "Gate",
+    jobPosition: "Flutter Engineer",
+    date: "Feb 2024 - Present",
+    imagePath: "assets/images/gate_icon_filled_black.jpg",
+    address: "Remote (Germany)",
+    listOfDuties: [
+      "Implemented Designs and Features from Figma UI",
+      "Connected to Firebase and managed the flow and storage of called data",
+      "Continuously optimize and improve the app's performance, user interface, and functionality",
+    ],
+  ),
   WEquil(
     nameOfCompany: "WEquil Group",
     jobPosition: "Flutter Engineer (Contract)",
-    date: "April 2023 - Present",
+    date: "April 2023 - July 2024",
     imagePath: "assets/images/wequil.png",
     address: "Remote (USA)",
     listOfDuties: [
-      "Implemented Classrooms and Digital Resume feature",
-      "Designed and Developed Classroom web pages",
+      "Implemented Classrooms, Digital Resume, Home Screen, Profiles and more",
       "Implement secure and scalable interfaces between the mobile app and internet-based services and APIs",
       "Continuously optimize and improve the app's performance, user interface, and functionality",
     ],

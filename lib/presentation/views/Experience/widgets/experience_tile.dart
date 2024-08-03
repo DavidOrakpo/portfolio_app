@@ -231,35 +231,30 @@ class ExperienceTile extends StatelessWidget {
                     const SizedBox(
                       height: 12,
                     ),
-                    Container(
-                      constraints: const BoxConstraints(
-                        minHeight: 80,
-                        maxHeight: 200,
-                      ),
-                      child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: companies.listOfDuties.length,
-                        itemBuilder: (context, index) {
-                          var item = companies.listOfDuties[index];
-                          return ListTile(
-                            leading: Text(
-                              "*",
-                              style: TextStyle(
-                                fontSize: 30,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                    ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: companies.listOfDuties.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        var item = companies.listOfDuties[index];
+                        return ListTile(
+                          leading: Text(
+                            "*",
+                            style: TextStyle(
+                              fontSize: 30,
+                              color: Theme.of(context).colorScheme.primary,
                             ),
-                            title: Text(
-                              item,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                          ),
+                          title: Text(
+                            item,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
                             ),
-                          );
-                        },
-                      ),
+                          ),
+                        );
+                      },
                     )
                   ],
                 ),
