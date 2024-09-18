@@ -57,6 +57,8 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                     Checkbox(
                         value: context.read<DarkThemeProvider>().darkTheme,
+                        activeColor: Theme.of(context).primaryColor,
+                        checkColor: Colors.black,
                         onChanged: (bool? value) {
                           context.read<DarkThemeProvider>().darkTheme = value!;
                         }),

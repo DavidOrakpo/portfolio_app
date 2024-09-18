@@ -52,8 +52,9 @@ class Styles {
       unselectedWidgetColor: isDarkTheme
           ? Color.fromARGB(124, 228, 217, 217)
           : Colors.grey.shade400,
+
       // primaryColor: isDarkTheme ? Colors.white : Color.fromRGBO(5, 70, 123, 1),
-      backgroundColor: isDarkTheme ? Colors.black : const Color(0xffF1F5FB),
+      // backgroundColor: isDarkTheme ? Colors.black : const Color(0xffF1F5FB),
       indicatorColor: isDarkTheme
           ? const Color.fromRGBO(5, 70, 123, 1)
           : const Color(0xffCBDCF8),

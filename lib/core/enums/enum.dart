@@ -99,6 +99,8 @@ enum Companies {
     date: "Feb 2024 - Present",
     imagePath: "assets/images/gate_icon_filled_black.jpg",
     address: "Remote (Germany)",
+    appLink:
+        "https://apps.apple.com/us/app/gate-creator-app/id6478483588?platform=iphone",
     listOfDuties: [
       "Implemented Designs and Features from Figma UI",
       "Connected to Firebase and managed the flow and storage of called data",
@@ -110,10 +112,13 @@ enum Companies {
     jobPosition: "Flutter Engineer (Contract)",
     date: "April 2023 - July 2024",
     imagePath: "assets/images/wequil.png",
+    appLink:
+        "https://play.google.com/store/apps/details?id=app.wequil.wequilmobile&hl=en_US",
     address: "Remote (USA)",
     listOfDuties: [
       "Implemented Classrooms, Digital Resume, Home Screen, Profiles and more",
       "Implement secure and scalable interfaces between the mobile app and internet-based services and APIs",
+      "Implemented Flutter Web App UI",
       "Continuously optimize and improve the app's performance, user interface, and functionality",
     ],
   ),
@@ -122,6 +127,8 @@ enum Companies {
     jobPosition: "Flutter Lead Engineer",
     date: "April 2023 - Present",
     imagePath: "assets/images/bani.png",
+    appLink:
+        "https://play.google.com/store/apps/details?id=com.bani.shopper&hl=en_US",
     address: "Remote",
     listOfDuties: [
       "Collaborate with the Product Development team to understand user requirements",
@@ -182,8 +189,9 @@ enum Companies {
     required this.address,
     required this.listOfDuties,
     required this.imagePath,
+    this.appLink,
   });
 
   final List<String> listOfDuties;
-  final String? nameOfCompany, jobPosition, date, address, imagePath;
+  final String? nameOfCompany, jobPosition, date, address, imagePath, appLink;
 }

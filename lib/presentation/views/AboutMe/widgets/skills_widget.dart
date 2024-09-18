@@ -67,7 +67,7 @@ class _SkillsWidgetState extends State<SkillsWidget> {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Theme.of(context).primaryColor.withOpacity(0.7),
+                  color: Theme.of(context).primaryColor.withOpacity(0.3),
                   offset: const Offset(2, 3),
                   blurRadius: 13,
                 )
@@ -101,7 +101,7 @@ class _SkillsWidgetState extends State<SkillsWidget> {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Theme.of(context).primaryColor.withOpacity(0.7),
+                  color: Theme.of(context).primaryColor.withOpacity(0.3),
                   offset: const Offset(2, 3),
                   blurRadius: 13,
                 )

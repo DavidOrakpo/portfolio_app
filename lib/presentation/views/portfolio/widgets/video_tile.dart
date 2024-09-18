@@ -38,15 +38,17 @@ class _VideoTileState extends State<VideoTile> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     return GestureDetector(
       onTap: () {
         if (controller1.value.isPlaying) {
           controller1.pause();
+        } else {
+          controller1.play();
         }
-        controller1.play();
       },
       child: Container(
-        height: 600,
+        height: size.height * 0.7,
         width: double.infinity,
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
@@ -54,9 +56,9 @@ class _VideoTileState extends State<VideoTile> {
           color: Theme.of(context).colorScheme.onTertiary,
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).primaryColor.withOpacity(0.2),
-              blurRadius: 15,
-              spreadRadius: 10,
+              color: Theme.of(context).primaryColor.withOpacity(0.1),
+              blurRadius: 5,
+              spreadRadius: 5,
             ),
           ],
         ),
@@ -65,26 +67,45 @@ class _VideoTileState extends State<VideoTile> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: Container(
-                color: Colors.black,
-                child: (controller1.value.isInitialized)
-                    ? SizedBox(
-                        height: 510,
-                        child: Center(
-                          child: AspectRatio(
-                            aspectRatio: controller1.value.aspectRatio,
-                            child: VideoPlayer(controller1),
-                          ),
-                        ),
-                      )
-                    : const SizedBox(
-                        height: 200,
-                        child: Center(
-                          child: CircularProgressIndicator(),
+            Expanded(
+              child: Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(6),
+                    child: Container(
+                      color: Colors.black,
+                      child: (controller1.value.isInitialized)
+                          ? SizedBox(
+                              // height: 510,
+                              child: Center(
+                                child: AspectRatio(
+                                  aspectRatio: controller1.value.aspectRatio,
+                                  child: VideoPlayer(controller1),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(
+                              height: 200,
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                    ),
+                  ),
+                  if (!controller1.value.isPlaying)
+                    Center(
+                      child: CircleAvatar(
+                        radius: 30,
+                        backgroundColor: Colors.white,
+                        child: Icon(
+                          controller1.value.isPlaying
+                              ? Icons.pause
+                              : Icons.play_arrow,
+                          color: Colors.black,
                         ),
                       ),
+                    )
+                ],
               ),
             ),
             const SizedBox(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/core/enums/enum.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ExperienceTile extends StatelessWidget {
   ExperienceTile({
@@ -22,7 +23,7 @@ class ExperienceTile extends StatelessWidget {
             context, company!, MediaQuery.of(context).size.height * 0.75);
       },
       child: Container(
-        height: 246,
+        // height: 246,
         width: double.infinity,
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
@@ -30,9 +31,9 @@ class ExperienceTile extends StatelessWidget {
           color: Theme.of(context).colorScheme.onTertiary,
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).primaryColor.withOpacity(0.25),
-              blurRadius: 15,
-              spreadRadius: 10,
+              color: Theme.of(context).primaryColor.withOpacity(0.1),
+              blurRadius: 10,
+              spreadRadius: 5,
             ),
           ],
         ),
@@ -94,170 +95,213 @@ class ExperienceTile extends StatelessWidget {
       builder: (context) {
         return Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.tertiary.withOpacity(0.7),
-            borderRadius: BorderRadius.circular(24),
+            color: Theme.of(context).colorScheme.tertiary.withOpacity(1),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(24),
+              topRight: Radius.circular(24),
+            ),
           ),
           child: SizedBox(
             height: bottomSheetHeight,
             child: Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  // mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              companies.name,
-                              style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onPrimaryContainer,
-                              ),
-                            ),
-                            Container(
-                              height: 3,
-                              width: 80,
+              padding: const EdgeInsets.all(24.0).copyWith(bottom: 0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            companies.name,
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
                               color: Theme.of(context)
                                   .colorScheme
                                   .onPrimaryContainer,
-                            )
-                          ],
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(
-                            Icons.cancel_rounded,
+                            ),
+                          ),
+                          Container(
+                            height: 3,
+                            width: 80,
                             color: Theme.of(context)
                                 .colorScheme
                                 .onPrimaryContainer,
-                          ),
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    ListTile(
-                      leading: Icon(
-                        Icons.location_city_rounded,
-                        color: Theme.of(context).colorScheme.primary,
+                          )
+                        ],
                       ),
-                      title: Text(
-                        "Address",
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontSize: 24,
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(
+                          Icons.cancel_rounded,
+                          color:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
                         ),
-                      ),
-                      subtitle: Text(
-                        companies.address!,
-                        style: TextStyle(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .primary
-                              .withOpacity(0.6),
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
-                    ListTile(
-                      leading: Icon(
-                        Icons.work_rounded,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                      title: Text(
-                        "Job Position",
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontSize: 24,
-                        ),
-                      ),
-                      subtitle: Text(
-                        companies.jobPosition!,
-                        style: TextStyle(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .primary
-                              .withOpacity(0.6),
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
-                    ListTile(
-                      leading: Icon(
-                        Icons.calendar_month,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                      title: Text(
-                        "Duration",
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontSize: 24,
-                        ),
-                      ),
-                      subtitle: Text(
-                        companies.date!,
-                        style: TextStyle(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .primary
-                              .withOpacity(0.6),
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Duties",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: companies.listOfDuties.length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        var item = companies.listOfDuties[index];
-                        return ListTile(
-                          leading: Text(
-                            "*",
-                            style: TextStyle(
-                              fontSize: 30,
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ListTile(
+                            leading: Icon(
+                              Icons.location_city_rounded,
                               color: Theme.of(context).colorScheme.primary,
                             ),
+                            title: Text(
+                              "Address",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontSize: 24,
+                              ),
+                            ),
+                            subtitle: Text(
+                              companies.address!,
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primary
+                                    .withOpacity(0.6),
+                                fontSize: 14,
+                              ),
+                            ),
                           ),
-                          title: Text(
-                            item,
+                          ListTile(
+                            leading: Icon(
+                              Icons.work_rounded,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            title: Text(
+                              "Job Position",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontSize: 24,
+                              ),
+                            ),
+                            subtitle: Text(
+                              companies.jobPosition!,
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primary
+                                    .withOpacity(0.6),
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                          ListTile(
+                            leading: Icon(
+                              Icons.calendar_month,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            title: Text(
+                              "Duration",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontSize: 24,
+                              ),
+                            ),
+                            subtitle: Text(
+                              companies.date!,
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primary
+                                    .withOpacity(0.6),
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                          if (companies.appLink != null)
+                            ListTile(
+                              onTap: () {
+                                launchUrl(Uri.parse(companies.appLink!));
+                              },
+                              leading: Icon(
+                                Icons.store,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                              title: Text(
+                                "App Link",
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontSize: 24,
+                                ),
+                              ),
+                              subtitle: Text(
+                                companies.appLink!,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withOpacity(0.6),
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                          Text(
+                            "Duties",
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: Theme.of(context).colorScheme.primary,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onPrimaryContainer,
                             ),
                           ),
-                        );
-                      },
-                    )
-                  ],
-                ),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: companies.listOfDuties.length,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              var item = companies.listOfDuties[index];
+                              return ListTile(
+                                leading: Text(
+                                  "*",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                                ),
+                                title: Text(
+                                  item,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                                ),
+                              );
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
