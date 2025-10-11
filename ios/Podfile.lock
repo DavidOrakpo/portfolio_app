@@ -49,15 +49,15 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/video_player_avfoundation/ios"
 
 SPEC CHECKSUMS:
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  path_provider_foundation: eaf5b3e458fc0e5fbb9940fb09980e853fe058b8
-  permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
-  shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
-  sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
-  url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
-  video_player_avfoundation: 81e49bb3d9fb63dccf9fa0f6d877dc3ddbeac126
+  path_provider_foundation: 0f28622a447f952060798e710afcae6800d1dfa0
+  permission_handler_apple: 3787117e48f80715ff04a3830ca039283d6a4f29
+  shared_preferences_foundation: 4e65c567e7877037d328829a522222c938bf308c
+  sqflite: 5b24d06a453c198c13b305ceea4b4286cc07cfe4
+  url_launcher_ios: b7f13d9491e07f5230bf3e056ab68678f896980a
+  video_player_avfoundation: a8ea941d9519a60fa93a9908123c68e0917cbd1d
 
-PODFILE CHECKSUM: aa3b1d9cb94e8055dc6468141196cf9e4c8e33df
+PODFILE CHECKSUM: 841b406a52e384612edcadee741cc204faae5d28
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.16.2

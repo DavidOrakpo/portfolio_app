@@ -31,20 +31,6 @@ class Styles {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
       // colorSchemeSeed: const Color.fromRGBO(5, 70, 123, 1),
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: const Color.fromRGBO(5, 70, 123, 1),
-        primaryContainer:
-            isDarkTheme ? Colors.white : const Color.fromRGBO(5, 70, 123, 1),
-        primary:
-            isDarkTheme ? Colors.white : const Color.fromRGBO(5, 70, 123, 1),
-        tertiary:
-            isDarkTheme ? const Color.fromRGBO(5, 70, 123, 1) : Colors.white,
-        onTertiary:
-            isDarkTheme ? Color.fromARGB(117, 44, 122, 186) : Colors.white,
-        onPrimaryContainer:
-            isDarkTheme ? Colors.white54 : Color.fromARGB(255, 17, 60, 95),
-        inversePrimary: isDarkTheme ? Colors.white : Colors.black,
-      ),
       scaffoldBackgroundColor:
           isDarkTheme ? Color.fromARGB(255, 2, 11, 31) : Colors.white,
       textTheme: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme),
@@ -78,6 +64,21 @@ class Styles {
       appBarTheme: const AppBarTheme(
         elevation: 0.0,
       ),
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: const Color.fromRGBO(5, 70, 123, 1),
+        primaryContainer:
+            isDarkTheme ? Colors.white : const Color.fromRGBO(5, 70, 123, 1),
+        primary:
+            isDarkTheme ? Colors.white : const Color.fromRGBO(5, 70, 123, 1),
+        tertiary:
+            isDarkTheme ? const Color.fromRGBO(5, 70, 123, 1) : Colors.white,
+        onTertiary:
+            isDarkTheme ? Color.fromARGB(117, 44, 122, 186) : Colors.white,
+        onPrimaryContainer:
+            isDarkTheme ? Colors.white54 : Color.fromARGB(255, 17, 60, 95),
+        inversePrimary: isDarkTheme ? Colors.white : Colors.black,
+      ).copyWith(
+          background: isDarkTheme ? Colors.black : const Color(0xffF1F5FB)),
     );
   }
 }
