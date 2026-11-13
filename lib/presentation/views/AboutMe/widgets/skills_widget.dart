@@ -1,121 +1,130 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:portfolio_app/core/themes/styles.dart';
 
 class SkillsWidget extends StatefulWidget {
-  SkillsWidget({
-    Key? key,
+  const SkillsWidget({
+    super.key,
     this.title,
+    this.category,
+    this.proficiency = 0.9,
     required this.isFirstSequence,
-  })  : isInverseSequence = !isFirstSequence!,
-        super(key: key);
+  });
+
   final String? title;
-  bool? isFirstSequence, isInverseSequence;
+  final String? category;
+  final double proficiency;
+  final bool? isFirstSequence;
+
   @override
   State<SkillsWidget> createState() => _SkillsWidgetState();
 }
 
 class _SkillsWidgetState extends State<SkillsWidget> {
-  Timer? timer, offSyncTimer;
-  bool? firstSequence = true, inverseSequence = false;
+  Timer? _timer;
+  bool _glowActive = false;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        firstSequence = !firstSequence!;
-      });
-    });
-
-    offSyncTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        inverseSequence = !inverseSequence!;
-      });
+    _glowActive = widget.isFirstSequence ?? true;
+    _timer = Timer.periodic(const Duration(milliseconds: 1800), (_) {
+      if (mounted) {
+        setState(() {
+          _glowActive = !_glowActive;
+        });
+      }
     });
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    _timer?.cancel();
     super.dispose();
-    if (timer != null) {
-      timer?.cancel();
-    }
-    if (offSyncTimer != null) {
-      offSyncTimer?.cancel();
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.isFirstSequence!
-        ? AnimatedContainer(
-            duration: const Duration(seconds: 1),
-            height: firstSequence! ? 80 : 90,
-            width: firstSequence! ? 80 : 90,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color.fromARGB(255, 129, 180, 221),
-                  Color.fromRGBO(5, 70, 123, 1),
-                ],
-                stops: [0, 0.5],
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Theme.of(context).primaryColor.withOpacity(0.3),
-                  offset: const Offset(2, 3),
-                  blurRadius: 13,
-                )
-              ],
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final accent = Theme.of(context).colorScheme.primary;
+    final percentText = "${(widget.proficiency * 100).round()}%";
+
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 900),
+      curve: Curves.easeInOut,
+      width: 255,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: isDark
+            ? TechColors.darkBg.withValues(alpha: 0.75)
+            : TechColors.lightBg,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: _glowActive
+              ? accent.withValues(alpha: 0.65)
+              : (isDark ? TechColors.darkBorder : TechColors.lightBorder),
+          width: 1.2,
+        ),
+        boxShadow: [
+          if (_glowActive)
+            BoxShadow(
+              color: accent.withValues(alpha: isDark ? 0.14 : 0.08),
+              blurRadius: 14,
+              offset: const Offset(0, 4),
             ),
-            child: Center(
-              child: Text(
-                widget.title!,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                widget.category ?? "MODULE",
+                style: GoogleFonts.jetBrainsMono(
+                  fontSize: 9,
+                  fontWeight: FontWeight.w600,
+                  color: accent,
                 ),
               ),
-            ),
-          )
-        //! SECOND SEQUENCE
-        : AnimatedContainer(
-            duration: const Duration(seconds: 1),
-            height: inverseSequence! ? 80 : 90,
-            width: inverseSequence! ? 80 : 90,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color.fromARGB(255, 129, 180, 221),
-                  Color.fromRGBO(5, 70, 123, 1),
-                ],
-                stops: [0, 0.5],
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Theme.of(context).primaryColor.withOpacity(0.3),
-                  offset: const Offset(2, 3),
-                  blurRadius: 13,
-                )
-              ],
-            ),
-            child: Center(
-              child: Text(
-                widget.title!,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+              Text(
+                percentText,
+                style: GoogleFonts.jetBrainsMono(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w700,
+                  color: TechColors.matrixGreen,
                 ),
               ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Text(
+            widget.title ?? "Skill",
+            style: GoogleFonts.spaceGrotesk(
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              color: isDark
+                  ? TechColors.darkTextPrimary
+                  : TechColors.lightTextPrimary,
             ),
-          );
+          ),
+          const SizedBox(height: 10),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: LinearProgressIndicator(
+              value: widget.proficiency,
+              minHeight: 5,
+              backgroundColor:
+                  isDark ? TechColors.darkBorder : TechColors.lightBorder,
+              valueColor: AlwaysStoppedAnimation<Color>(accent),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

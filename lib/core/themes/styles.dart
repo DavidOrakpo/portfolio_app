@@ -1,84 +1,126 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
-import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:material_ui/material_ui.dart';
+
+class TechColors {
+  // Cyber Crimson Dark Palette
+  static const Color darkBg = Color(0xFF0C0608);
+  static const Color darkSurface = Color(0xFF150A0E);
+  static const Color darkCard = Color(0xFF1E0E14);
+  static const Color darkBorder = Color(0xFF3D1A24);
+
+  // Unified Red / Crimson Accents
+  static const Color neonCyan = Color(0xFFFF2A54); // Primary Cyber Crimson
+  static const Color electricBlue = Color(0xFFE11D48); // Ruby Red
+  static const Color cyberViolet = Color(0xFF9F1239); // Deep Crimson
+  static const Color matrixGreen = Color(0xFFFF4D6D); // Bright Rose-Red Status
+  static const Color crimsonRed = Color(0xFFFF2A54);
+  static const Color warningAmber = Color(0xFFF97316);
+
+  static const Color darkTextPrimary = Color(0xFFFFF1F2);
+  static const Color darkTextSecondary = Color(0xFFB8969E);
+
+  // Technical Crimson Light Palette
+  static const Color lightBg = Color(0xFFFAF5F6);
+  static const Color lightSurface = Color(0xFFFFFFFF);
+  static const Color lightCard = Color(0xFFFFF8F9);
+  static const Color lightBorder = Color(0xFFE5CED3);
+  static const Color techBlue = Color(0xFFE11D48); // Primary Crimson
+  static const Color deepIndigo = Color(0xFF9F1239); // Deep Ruby
+  static const Color lightTextPrimary = Color(0xFF1F080E);
+  static const Color lightTextSecondary = Color(0xFF6E4751);
+}
 
 class Styles {
   static ThemeData flexThemeData(bool isDarkTheme, BuildContext context) {
     return isDarkTheme
         ? FlexThemeData.dark(
-            scheme: FlexScheme.deepBlue,
+            scheme: FlexScheme.redWine,
             surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
             blendLevel: 13,
             subThemesData: const FlexSubThemesData(
               blendOnLevel: 20,
-              useTextTheme: true,
             ),
             visualDensity: FlexColorScheme.comfortablePlatformDensity,
           )
         : FlexThemeData.light(
-            scheme: FlexScheme.deepBlue,
+            scheme: FlexScheme.redWine,
             surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
             blendLevel: 7,
             subThemesData: const FlexSubThemesData(
               blendOnLevel: 10,
               blendOnColors: false,
-              useTextTheme: true,
             ),
             visualDensity: FlexColorScheme.comfortablePlatformDensity,
           );
   }
 
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
+    final baseTextTheme = isDarkTheme
+        ? ThemeData.dark().textTheme
+        : ThemeData.light().textTheme;
+    final primaryTextColor = isDarkTheme
+        ? TechColors.darkTextPrimary
+        : TechColors.lightTextPrimary;
+
+    final accentColor =
+        isDarkTheme ? TechColors.neonCyan : TechColors.techBlue;
+    final secondaryColor =
+        isDarkTheme ? TechColors.cyberViolet : TechColors.deepIndigo;
+
     return ThemeData(
-      // colorSchemeSeed: const Color.fromRGBO(5, 70, 123, 1),
+      useMaterial3: true,
+      brightness: isDarkTheme ? Brightness.dark : Brightness.light,
       scaffoldBackgroundColor:
-          isDarkTheme ? Color.fromARGB(255, 2, 11, 31) : Colors.white,
-      textTheme: GoogleFonts.rubikTextTheme(Theme.of(context).textTheme),
-
-      unselectedWidgetColor: isDarkTheme
-          ? Color.fromARGB(124, 228, 217, 217)
-          : Colors.grey.shade400,
-
-      // primaryColor: isDarkTheme ? Colors.white : Color.fromRGBO(5, 70, 123, 1),
-      // backgroundColor: isDarkTheme ? Colors.black : const Color(0xffF1F5FB),
-      indicatorColor: isDarkTheme
-          ? const Color.fromRGBO(5, 70, 123, 1)
-          : const Color(0xffCBDCF8),
-      hintColor:
-          isDarkTheme ? const Color(0xff280C0B) : const Color(0xffEECED3),
-      highlightColor: isDarkTheme
-          ? const Color(0xff372901)
-          : Color.fromARGB(185, 121, 165, 209),
-      hoverColor:
-          isDarkTheme ? const Color(0xff3A3A3B) : const Color(0xff4285F4),
-      focusColor:
-          isDarkTheme ? const Color(0xff0B2512) : const Color(0xffA8DAB5),
-      disabledColor: Colors.grey,
-      cardColor: isDarkTheme ? const Color(0xFF151515) : Colors.white,
-      canvasColor: isDarkTheme ? Colors.black : Colors.grey[50],
-      // brightness: isDarkTheme ? Brightness.dark : Brightness.light,
-      buttonTheme: Theme.of(context).buttonTheme.copyWith(
-          colorScheme: isDarkTheme
-              ? const ColorScheme.dark()
-              : const ColorScheme.light()),
-      appBarTheme: const AppBarTheme(
-        elevation: 0.0,
+          isDarkTheme ? TechColors.darkBg : TechColors.lightBg,
+      primaryColor: accentColor,
+      textTheme: GoogleFonts.spaceGroteskTextTheme(baseTextTheme).apply(
+        bodyColor: primaryTextColor,
+        displayColor: primaryTextColor,
       ),
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: const Color.fromRGBO(5, 70, 123, 1),
-        primaryContainer:
-            isDarkTheme ? Colors.white : const Color.fromRGBO(5, 70, 123, 1),
-        primary:
-            isDarkTheme ? Colors.white : const Color.fromRGBO(5, 70, 123, 1),
+      unselectedWidgetColor: isDarkTheme
+          ? TechColors.darkTextSecondary
+          : TechColors.lightTextSecondary,
+      hintColor: isDarkTheme
+          ? TechColors.darkTextSecondary
+          : TechColors.lightTextSecondary,
+      highlightColor: accentColor.withValues(alpha: 0.12),
+      hoverColor: accentColor.withValues(alpha: 0.08),
+      focusColor: accentColor.withValues(alpha: 0.15),
+      disabledColor: Colors.grey,
+      cardColor: isDarkTheme ? TechColors.darkCard : TechColors.lightSurface,
+      canvasColor:
+          isDarkTheme ? TechColors.darkSurface : TechColors.lightSurface,
+      dividerColor:
+          isDarkTheme ? TechColors.darkBorder : TechColors.lightBorder,
+      appBarTheme: AppBarTheme(
+        elevation: 0.0,
+        backgroundColor:
+            isDarkTheme ? TechColors.darkBg : TechColors.lightSurface,
+        foregroundColor: primaryTextColor,
+      ),
+      colorScheme: ColorScheme(
+        brightness: isDarkTheme ? Brightness.dark : Brightness.light,
+        primary: accentColor,
+        onPrimary: Colors.white,
+        primaryContainer: primaryTextColor,
+        onPrimaryContainer: isDarkTheme
+            ? TechColors.darkTextSecondary
+            : TechColors.lightTextSecondary,
+        secondary: secondaryColor,
+        onSecondary: Colors.white,
         tertiary:
-            isDarkTheme ? const Color.fromRGBO(5, 70, 123, 1) : Colors.white,
+            isDarkTheme ? TechColors.darkSurface : TechColors.lightSurface,
         onTertiary:
-            isDarkTheme ? Color.fromARGB(117, 44, 122, 186) : Colors.white,
-        onPrimaryContainer:
-            isDarkTheme ? Colors.white54 : Color.fromARGB(255, 17, 60, 95),
-        inversePrimary: isDarkTheme ? Colors.white : Colors.black,
-      ).copyWith(
-          background: isDarkTheme ? Colors.black : const Color(0xffF1F5FB)),
+            isDarkTheme ? TechColors.darkCard : TechColors.lightSurface,
+        error: const Color(0xFFEF4444),
+        onError: Colors.white,
+        surface:
+            isDarkTheme ? TechColors.darkSurface : TechColors.lightSurface,
+        onSurface: primaryTextColor,
+        inversePrimary: primaryTextColor,
+        outline: isDarkTheme ? TechColors.darkBorder : TechColors.lightBorder,
+      ),
     );
   }
 }

@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'custom_button.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
-  CustomOutlinedButton({
-    Key? key,
+  const CustomOutlinedButton({
+    super.key,
     this.onPressed,
     this.borderColor,
     this.borderWidth,
@@ -16,13 +16,13 @@ class CustomOutlinedButton extends StatelessWidget {
     this.width,
     this.text,
     this.textColor,
-  }) : super(key: key);
-  void Function()? onPressed;
-  bool? filled, isAvenir;
-  Color? borderColor, textColor, backgroundColor;
-  double? borderWidth, fontSize, width;
-  String? text;
-  FontWeight? fontweight;
+  });
+  final void Function()? onPressed;
+  final bool? filled, isAvenir;
+  final Color? borderColor, textColor, backgroundColor;
+  final double? borderWidth, fontSize, width;
+  final String? text;
+  final FontWeight? fontweight;
 
   @override
   Widget build(BuildContext context) {

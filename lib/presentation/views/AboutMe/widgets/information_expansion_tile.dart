@@ -1,254 +1,233 @@
-import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:portfolio_app/core/enums/enum.dart';
+import 'package:portfolio_app/core/themes/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BasicInformationTile extends StatefulWidget {
-  BasicInformationTile({
-    Key? key,
+  const BasicInformationTile({
+    super.key,
     this.contactinfoLists,
     this.isContactInfoList = true,
     this.description,
     this.subtitle,
     this.title,
     this.socialInfoLists,
-  }) : super(key: key);
-  List<ContactInformation>? contactinfoLists;
-  List<SocialInformation>? socialInfoLists;
-  bool isContactInfoList;
-  String? title, subtitle, description;
+  });
+
+  final List<ContactInformation>? contactinfoLists;
+  final List<SocialInformation>? socialInfoLists;
+  final bool isContactInfoList;
+  final String? title, subtitle, description;
+
   @override
   State<BasicInformationTile> createState() => _BasicInformationTileState();
 }
 
 class _BasicInformationTileState extends State<BasicInformationTile> {
-  bool isExpanded = false;
+  bool isExpanded = true;
+
+  Future<void> _handleItemTap(Object item) async {
+    Uri? targetUri;
+    if (item == SocialInformation.LinkedIn) {
+      targetUri = Uri.https("linkedin.com", "/in/davidorakpo");
+    } else if (item == SocialInformation.Twitter) {
+      targetUri = Uri.https("twitter.com", "/DavidOrakpo");
+    } else if (item == SocialInformation.Github) {
+      targetUri = Uri.https("github.com", "/DavidOrakpo");
+    } else if (item == ContactInformation.Email) {
+      targetUri = Uri(scheme: 'mailto', path: 'davidorakpo65@gmail.com');
+    } else if (item == ContactInformation.PhoneNumber) {
+      targetUri = Uri(scheme: 'tel', path: '+23408029214383');
+    }
+
+    if (targetUri != null && await canLaunchUrl(targetUri)) {
+      await launchUrl(targetUri, mode: LaunchMode.externalApplication);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    var contactInfoList = widget.isContactInfoList
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final accent = Theme.of(context).colorScheme.primary;
+    final contactInfoList = widget.isContactInfoList
         ? widget.contactinfoLists
         : widget.socialInfoLists;
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          border: GradientBoxBorder(
-              gradient: LinearGradient(colors: [
-            Theme.of(context).primaryColor,
-            const Color.fromARGB(255, 129, 180, 221),
-          ], stops: const [
-            0,
-            0.5
-          ]))
 
-          //  Constants.gradientBoxBorder(
-          //   width: 2,
-          // ),
+    return Container(
+      decoration: BoxDecoration(
+        color: isDark
+            ? TechColors.darkCard.withValues(alpha: 0.9)
+            : TechColors.lightSurface,
+        borderRadius: BorderRadius.circular(14),
+        border: GradientBoxBorder(
+          width: 1.3,
+          gradient: LinearGradient(
+            colors: [
+              accent.withValues(alpha: 0.7),
+              TechColors.cyberViolet.withValues(alpha: 0.45),
+            ],
           ),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: accent.withValues(alpha: isDark ? 0.06 : 0.05),
+            blurRadius: 18,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
+          initiallyExpanded: isExpanded,
           onExpansionChanged: (value) {
             setState(() {
-              isExpanded = !isExpanded;
+              isExpanded = value;
             });
           },
+          tilePadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          childrenPadding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
           expandedCrossAxisAlignment: CrossAxisAlignment.start,
-          iconColor: Theme.of(context).colorScheme.primary,
-          collapsedIconColor:
-              Theme.of(context).colorScheme.primary.withOpacity(0.7),
+          iconColor: accent,
+          collapsedIconColor: accent.withValues(alpha: 0.7),
           expandedAlignment: Alignment.topLeft,
           trailing: Container(
-              height: 50,
-              width: 20,
-              alignment: Alignment.bottomCenter,
-              child: Icon(isExpanded
-                  ? Icons.arrow_upward_rounded
-                  : Icons.arrow_downward_rounded)),
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: accent.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: accent.withValues(alpha: 0.35)),
+            ),
+            child: Icon(
+              isExpanded
+                  ? Icons.keyboard_arrow_up_rounded
+                  : Icons.keyboard_arrow_down_rounded,
+              color: accent,
+              size: 20,
+            ),
+          ),
           title: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(widget.subtitle ?? "PERSONAL DETAILS",
-                  style: TextStyle(
-                      fontSize: 10,
-                      color: Theme.of(context)
-                          .colorScheme
-                          .inversePrimary
-                          .withOpacity(0.7))),
-              const SizedBox(
-                height: 4,
-              ),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: widget.title ?? "CONTACT INFORMATION",
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const TextSpan(
-                      text: "",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  ],
+              Text(
+                "// ${widget.subtitle ?? "PERSONAL DETAILS"}",
+                style: GoogleFonts.jetBrainsMono(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 1.1,
+                  color: accent,
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              Divider(
-                color: Theme.of(context).primaryColor,
-                height: 1,
-                thickness: 2,
-              ),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 6),
               Text(
-                widget.description ?? "Email, Phone No:, Address etc",
+                widget.title ?? "CONTACT INFORMATION",
+                style: GoogleFonts.spaceGrotesk(
+                  color: isDark
+                      ? TechColors.darkTextPrimary
+                      : TechColors.lightTextPrimary,
+                  fontSize: 19,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                widget.description ?? "Email, Phone No, Location & Education",
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
-                  fontSize: 14,
+                  color: isDark
+                      ? TechColors.darkTextSecondary
+                      : TechColors.lightTextSecondary,
+                  fontSize: 12,
                 ),
               ),
             ],
           ),
           children: [
-            Theme(
-              data: Theme.of(context).copyWith(dividerColor: Colors.black),
-              child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: ConstrainedBox(
-                    constraints:
-                        const BoxConstraints(maxHeight: 400, minHeight: 56.0),
-                    child: ListView.separated(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          var item = contactInfoList[index];
-                          return ListTile(
-                            contentPadding: const EdgeInsets.all(0),
-                            onTap: () async {
-                              if (item == SocialInformation.LinkedIn) {
-                                if (await canLaunchUrl(Uri.https(
-                                    "linkedin.com", "/in/davidorakpo"))) {
-                                  final bool nativeAppLaunchSucceeded =
-                                      await launchUrl(
-                                          Uri.https("linkedin.com",
-                                              "/in/davidorakpo"),
-                                          mode: LaunchMode.externalApplication);
-                                  if (!nativeAppLaunchSucceeded) {
-                                    await launchUrl(
-                                        Uri.https(
-                                            "linkedin.com", "/in/davidorakpo"),
-                                        mode: LaunchMode.inAppWebView);
-                                  }
-                                } else {
-                                  throw "An error occured";
-                                }
-                              }
-                              if (item == SocialInformation.Twitter) {
-                                if (await canLaunchUrl(
-                                    Uri.https("twitter.com", "/DavidOrakpo"))) {
-                                  final bool nativeAppLaunchSucceeded =
-                                      await launchUrl(
-                                          Uri.https(
-                                            "twitter.com",
-                                            "/DavidOrakpo",
-                                          ),
-                                          mode: LaunchMode.externalApplication);
-                                  if (!nativeAppLaunchSucceeded) {
-                                    await launchUrl(
-                                        Uri.https(
-                                          "twitter.com",
-                                          "/DavidOrakpo",
-                                        ),
-                                        mode: LaunchMode.inAppWebView);
-                                  }
-                                } else {
-                                  throw "An error occured";
-                                }
-                              }
-                              if (item == SocialInformation.Github) {
-                                if (await canLaunchUrl(
-                                    Uri.https("github.com", "/DavidOrakpo"))) {
-                                  final bool nativeAppLaunchSucceeded =
-                                      await launchUrl(
-                                          Uri.https(
-                                            "github.com",
-                                            "/DavidOrakpo",
-                                          ),
-                                          mode: LaunchMode.externalApplication);
-                                  if (!nativeAppLaunchSucceeded) {
-                                    await launchUrl(
-                                        Uri.https(
-                                          "github.com",
-                                          "/DavidOrakpo",
-                                        ),
-                                        mode: LaunchMode.inAppWebView);
-                                  }
-                                } else {
-                                  throw "An error occured";
-                                }
-                              }
-                            },
-                            title: Container(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: Text(
-                                widget.isContactInfoList
-                                    ? (item as ContactInformation).title
-                                    : (item as SocialInformation).title,
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            subtitle: Padding(
-                              padding: const EdgeInsets.only(bottom: 10.0),
-                              child: Text(
-                                widget.isContactInfoList
-                                    ? (item as ContactInformation).subtitle
-                                    : (item as SocialInformation).subtitle,
-                                style: TextStyle(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .primary
-                                      .withOpacity(0.5),
-                                  fontSize: 12,
-                                  height: 1.4,
-                                ),
-                              ),
-                            ),
-                            leading: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                widget.isContactInfoList
-                                    ? (item as ContactInformation).widget
-                                    : (item as SocialInformation).widget,
-                              ],
-                            ),
-                          );
-                        },
-                        separatorBuilder: (context, index) => Divider(
-                              color: Theme.of(context)
-                                  .primaryColor
-                                  .withOpacity(0.3),
-                              height: 1,
-                              thickness: 2,
-                            ),
-                        itemCount: contactInfoList!.length),
-                  )),
+            Divider(
+              color: isDark ? TechColors.darkBorder : TechColors.lightBorder,
+              height: 16,
+              thickness: 1,
+            ),
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: contactInfoList?.length ?? 0,
+              separatorBuilder: (context, index) => Divider(
+                color: (isDark ? TechColors.darkBorder : TechColors.lightBorder)
+                    .withValues(alpha: 0.6),
+                height: 1,
+                thickness: 1,
+              ),
+              itemBuilder: (context, index) {
+                final item = contactInfoList![index];
+                final title = widget.isContactInfoList
+                    ? (item as ContactInformation).title
+                    : (item as SocialInformation).title;
+                final subtitle = widget.isContactInfoList
+                    ? (item as ContactInformation).subtitle
+                    : (item as SocialInformation).subtitle;
+                final iconWidget = widget.isContactInfoList
+                    ? (item as ContactInformation).widget
+                    : (item as SocialInformation).widget;
+
+                final isActionable = item == SocialInformation.LinkedIn ||
+                    item == SocialInformation.Twitter ||
+                    item == SocialInformation.Github ||
+                    item == ContactInformation.Email ||
+                    item == ContactInformation.PhoneNumber;
+
+                return ListTile(
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+                  onTap: isActionable ? () => _handleItemTap(item) : null,
+                  leading: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: accent.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: accent.withValues(alpha: 0.25),
+                      ),
+                    ),
+                    child: IconTheme(
+                      data: IconThemeData(color: accent),
+                      child: iconWidget,
+                    ),
+                  ),
+                  title: Text(
+                    title,
+                    style: GoogleFonts.jetBrainsMono(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: isDark
+                          ? TechColors.darkTextPrimary
+                          : TechColors.lightTextPrimary,
+                    ),
+                  ),
+                  subtitle: Padding(
+                    padding: const EdgeInsets.only(top: 2.0),
+                    child: Text(
+                      subtitle,
+                      style: TextStyle(
+                        color: isDark
+                            ? TechColors.darkTextSecondary
+                            : TechColors.lightTextSecondary,
+                        fontSize: 13,
+                        height: 1.35,
+                      ),
+                    ),
+                  ),
+                  trailing: isActionable
+                      ? Icon(
+                          Icons.open_in_new_rounded,
+                          size: 16,
+                          color: accent.withValues(alpha: 0.8),
+                        )
+                      : null,
+                );
+              },
             ),
           ],
         ),

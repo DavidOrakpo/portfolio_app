@@ -1,31 +1,30 @@
-import 'package:flutter/material.dart';
-import 'package:portfolio_app/main.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:portfolio_app/presentation/views/LandingPage/landingpage.dart';
 import 'package:portfolio_app/presentation/views/home/hometabmanager.dart';
 
 class RouteGenerator {
   // ignore: non_constant_identifier_names
   static Route<dynamic>? GenerateRoute(RouteSettings settings) {
-    final args = settings.arguments;
     switch (settings.name) {
+      case "/":
       case "/landingPage":
         return MaterialPageRoute(builder: (_) {
-          return LandingPage();
+          return const LandingPage();
         });
       case "/homeTabManager":
         return MaterialPageRoute(builder: (_) {
-          return HomeTabManager();
+          return const HomeTabManager();
         });
 
       default:
         return MaterialPageRoute(builder: (_) {
-          return Container(
-            color: Colors.white,
-            child: const Center(
-                child: Text(
-              "Error, Incorrect Route",
-              textAlign: TextAlign.center,
-            )),
+          return const Scaffold(
+            body: Center(
+              child: Text(
+                "404 // ROUTE_NOT_FOUND",
+                textAlign: TextAlign.center,
+              ),
+            ),
           );
         });
     }

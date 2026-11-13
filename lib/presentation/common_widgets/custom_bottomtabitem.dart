@@ -1,9 +1,9 @@
-import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
+import 'package:material_ui/material_ui.dart';
 
-class CustomTabItem extends StatefulWidget {
-  CustomTabItem({
-    Key? key,
+class CustomTabItem extends StatelessWidget {
+  const CustomTabItem({
+    super.key,
     this.onTap,
     this.text,
     this.largeText = false,
@@ -16,72 +16,85 @@ class CustomTabItem extends StatefulWidget {
     this.selectedColor,
     this.unSelectedColor,
     required this.selectedIndex,
-  })  : isSelected = (selectedIndex == assignedIndex),
-        super(key: key);
-  int? assignedIndex, selectedIndex;
-  double? iconSize, iconWidth;
-  final void Function()? onTap;
-  String? text, defaultIconPath, selectedIconPath;
-  final bool? largeText, isSelected;
-  IconData? iconData;
-  Color? selectedColor, unSelectedColor;
-  @override
-  State<CustomTabItem> createState() => _CustomTabItemState();
-}
+  }) : isSelected = (selectedIndex == assignedIndex);
 
-class _CustomTabItemState extends State<CustomTabItem> {
+  final int? assignedIndex, selectedIndex;
+  final double? iconSize, iconWidth;
+  final void Function()? onTap;
+  final String? text, defaultIconPath, selectedIconPath;
+  final bool? largeText;
+  final bool isSelected;
+  final IconData? iconData;
+  final Color? selectedColor, unSelectedColor;
+
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: widget.onTap,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Icon(
-            widget.iconData,
-            size: widget.iconSize,
-            color: widget.isSelected!
-                ? widget.selectedColor
-                : widget.unSelectedColor,
+    final accent = selectedColor ?? Theme.of(context).colorScheme.primary;
+    final inactive =
+        unSelectedColor ?? Theme.of(context).unselectedWidgetColor;
+    final indexLabel = "0${(assignedIndex ?? 0) + 1}";
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 220),
+          margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+          decoration: BoxDecoration(
+            color: isSelected
+                ? accent.withValues(alpha: 0.12)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: isSelected
+                  ? accent.withValues(alpha: 0.45)
+                  : Colors.transparent,
+              width: 1,
+            ),
           ),
-          // Image.asset(
-          //   widget.isSelected!
-          //       ? widget.selectedIconPath!
-          //       : widget.defaultIconPath!,
-          //   height: widget.iconSize ?? 24,
-          //   width: widget.iconWidth ?? 24,
-          //   color: widget.isSelected!
-          //       ? widget.selectedColor
-          //       : widget.unSelectedColor,
-          // ),
-          const SizedBox(
-            height: 2,
-          ),
-          Text(widget.text ?? "Home",
-              textAlign: TextAlign.center,
-              style: GoogleFonts.roboto(
-                textStyle: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: widget.largeText! ? 12 : 14,
-                  color: widget.isSelected!
-                      ? Theme.of(context).colorScheme.primary
-                      : Theme.of(context).unselectedWidgetColor,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    indexLabel,
+                    style: GoogleFonts.jetBrainsMono(
+                      fontSize: 9,
+                      fontWeight: FontWeight.w600,
+                      color: isSelected
+                          ? accent
+                          : inactive.withValues(alpha: 0.6),
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  Icon(
+                    iconData,
+                    size: iconSize ?? 19,
+                    color: isSelected ? accent : inactive,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 3),
+              Text(
+                text ?? "Home",
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.jetBrainsMono(
+                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                  fontSize: 11,
+                  color: isSelected ? accent : inactive,
                 ),
-              )),
-          const SizedBox(
-            height: 5,
+              ),
+            ],
           ),
-          Container(
-            height: 3,
-            width: widget.selectedIndex == 2 ? 50 : 50,
-            decoration: BoxDecoration(
-                color: widget.isSelected!
-                    ? Theme.of(context).colorScheme.primary
-                    : Theme.of(context).unselectedWidgetColor,
-                borderRadius: BorderRadius.circular(20)),
-          )
-        ],
+        ),
       ),
     );
   }

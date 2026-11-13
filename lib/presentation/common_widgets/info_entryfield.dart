@@ -1,26 +1,26 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'custom_textfield.dart';
 
 class InfoEntryField extends StatefulWidget {
-  const InfoEntryField(
-      {Key? key,
-      this.entryTitle,
-      this.controller,
-      this.labelText,
-      this.iconData,
-      this.titleColor,
-      this.fontWeight,
-      this.hasIcon = true,
-      this.iconColor,
-      this.focusNode,
-      this.focusedBorderColor,
-      this.unfocusedBorderColor,
-      this.textBoxHeight,
-      this.entryBackground,
-      this.isPassword = false,
-      this.onPressed})
-      : super(key: key);
+  const InfoEntryField({
+    super.key,
+    this.entryTitle,
+    this.controller,
+    this.labelText,
+    this.iconData,
+    this.titleColor,
+    this.fontWeight,
+    this.hasIcon = true,
+    this.iconColor,
+    this.focusNode,
+    this.focusedBorderColor,
+    this.unfocusedBorderColor,
+    this.textBoxHeight,
+    this.entryBackground,
+    this.isPassword = false,
+    this.onPressed,
+  });
   final String? entryTitle, labelText;
   final IconData? iconData;
   final void Function()? onPressed;

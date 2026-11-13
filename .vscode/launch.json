@@ -1,0 +1,53 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "portfolio_app (Web Wasm - Debug)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome",
+      "flutterMode": "debug",
+      "args": [
+        "--wasm"
+      ]
+    },
+    {
+      "name": "portfolio_app (Web Wasm - Profile)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome",
+      "flutterMode": "profile",
+      "args": [
+        "--wasm"
+      ]
+    },
+    {
+      "name": "portfolio_app (Web Wasm - Release)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome",
+      "flutterMode": "release",
+      "args": [
+        "--wasm"
+      ]
+    },
+    {
+      "name": "portfolio_app (Debug)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "debug"
+    },
+    {
+      "name": "portfolio_app (Profile)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "portfolio_app (Release)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    }
+  ]
+}

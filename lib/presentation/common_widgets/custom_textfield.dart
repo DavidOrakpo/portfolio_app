@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:material_ui/material_ui.dart';
 
 class TextEntry extends StatefulWidget {
   final Color entryBackground;
@@ -26,32 +25,32 @@ class TextEntry extends StatefulWidget {
   final bool hasSuffixIcon;
   final TextEditingController? entryController;
 
-  const TextEntry(
-      {Key? key,
-      this.entryBackground = Colors.grey,
-      this.cornerRadius = 12,
-      this.keyboardType = TextInputType.none,
-      this.isAvenir = false,
-      this.focusNode,
-      this.textBoxHeight,
-      this.entryTitle = "",
-      this.unfocusedBorderColor = Colors.grey,
-      this.entryController,
-      this.focusedBorderColor = Colors.grey,
-      this.labelText = "",
-      this.labelTextSize = 14,
-      this.isPassword = false,
-      this.fontWeight,
-      this.hasSuffixIcon = false,
-      this.titleSize = 10,
-      this.titleColor = Colors.grey,
-      this.hintText = "",
-      this.suffIcon,
-      this.labelColor = Colors.black,
-      this.floatingLabelColor = Colors.black,
-      this.tapped,
-      this.finished})
-      : super(key: key);
+  const TextEntry({
+    super.key,
+    this.entryBackground = Colors.grey,
+    this.cornerRadius = 12,
+    this.keyboardType = TextInputType.none,
+    this.isAvenir = false,
+    this.focusNode,
+    this.textBoxHeight,
+    this.entryTitle = "",
+    this.unfocusedBorderColor = Colors.grey,
+    this.entryController,
+    this.focusedBorderColor = Colors.grey,
+    this.labelText = "",
+    this.labelTextSize = 14,
+    this.isPassword = false,
+    this.fontWeight,
+    this.hasSuffixIcon = false,
+    this.titleSize = 10,
+    this.titleColor = Colors.grey,
+    this.hintText = "",
+    this.suffIcon,
+    this.labelColor = Colors.black,
+    this.floatingLabelColor = Colors.black,
+    this.tapped,
+    this.finished,
+  });
 
   @override
   State<TextEntry> createState() => _TextEntryState();

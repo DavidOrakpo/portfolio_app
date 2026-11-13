@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:portfolio_app/core/themes/styles.dart';
 
 class CustomButton extends StatelessWidget {
   final double cornerRadius;
@@ -23,125 +24,125 @@ class CustomButton extends StatelessWidget {
   final IconData? icon;
   final FontWeight fontweight;
   final void Function()? onPressed;
-  const CustomButton(
-      {Key? key,
-      this.cornerRadius = 12,
-      this.gradientColorList,
-      this.shadowColor,
-      this.gradientStops,
-      this.hasIcon = false,
-      this.begin,
-      this.end,
-      this.width = double.infinity,
-      this.height = 48,
-      this.icon,
-      this.hasShadow = false,
-      this.borderColor,
-      this.isAvenir = false,
-      this.hasGradient = false,
-      this.filled = true,
-      this.iconColor = Colors.transparent,
-      this.backgroundColor = Colors.transparent,
-      this.borderWidth = 1,
-      this.text = "",
-      this.textColor = Colors.grey,
-      this.fontSize = 12,
-      this.fontweight = FontWeight.normal,
-      this.onPressed})
-      : super(key: key);
+
+  const CustomButton({
+    super.key,
+    this.cornerRadius = 10,
+    this.gradientColorList,
+    this.shadowColor,
+    this.gradientStops,
+    this.hasIcon = false,
+    this.begin,
+    this.end,
+    this.width = double.infinity,
+    this.height = 48,
+    this.icon,
+    this.hasShadow = false,
+    this.borderColor,
+    this.isAvenir = false,
+    this.hasGradient = false,
+    this.filled = true,
+    this.iconColor = Colors.white,
+    this.backgroundColor,
+    this.borderWidth = 1.2,
+    this.text = "",
+    this.textColor = Colors.white,
+    this.fontSize = 14,
+    this.fontweight = FontWeight.w600,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(cornerRadius),
-      child: Container(
-        height: height,
-        width: width,
-        decoration: BoxDecoration(
-          color: Colors.transparent,
-          border: Border.all(
-              color: filled
-                  ? backgroundColor!
-                  : borderColor ?? const Color(0xFF000000),
-              width: borderWidth),
-          boxShadow: hasShadow
-              ? [
-                  BoxShadow(
-                      color: shadowColor ?? Colors.black26,
-                      offset: const Offset(5, 15),
-                      blurRadius: 5.0)
-                ]
-              : [],
-          gradient: LinearGradient(
-            begin: hasGradient ? begin! : Alignment.topLeft,
-            end: hasGradient ? end! : Alignment.bottomRight,
-            stops: hasGradient ? gradientStops : [1],
-            colors: hasGradient ? gradientColorList! : [backgroundColor!],
-          ),
-          // color: Colors.deepPurple.shade300,
-          borderRadius: BorderRadius.circular(cornerRadius),
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final defaultBg = backgroundColor ??
+        (isDark ? TechColors.neonCyan : TechColors.techBlue);
+    final effectiveTextColor = textColor;
+
+    return Container(
+      height: height,
+      width: width,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(cornerRadius),
+        border: Border.all(
+          color: filled
+              ? (borderColor ?? defaultBg.withValues(alpha: 0.6))
+              : (borderColor ?? defaultBg),
+          width: borderWidth,
         ),
-        child: ElevatedButton(
-          onPressed: onPressed,
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(cornerRadius),
+        boxShadow: hasShadow || filled
+            ? [
+                BoxShadow(
+                  color: (shadowColor ?? defaultBg).withValues(alpha: 0.25),
+                  offset: const Offset(0, 4),
+                  blurRadius: 16,
+                ),
+              ]
+            : [],
+        gradient: hasGradient && gradientColorList != null
+            ? LinearGradient(
+                begin: begin ?? Alignment.topLeft,
+                end: end ?? Alignment.bottomRight,
+                stops: gradientStops,
+                colors: gradientColorList!,
+              )
+            : filled
+                ? LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      defaultBg,
+                      Color.lerp(defaultBg, TechColors.cyberViolet, 0.35) ??
+                          defaultBg,
+                    ],
+                  )
+                : null,
+        color: filled ? null : Colors.transparent,
+      ),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ButtonStyle(
+          elevation: WidgetStateProperty.all(0),
+          padding: WidgetStateProperty.all(
+            const EdgeInsets.symmetric(horizontal: 16),
+          ),
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(cornerRadius),
+            ),
+          ),
+          minimumSize: WidgetStateProperty.all(Size(width, height)),
+          backgroundColor: WidgetStateProperty.all(Colors.transparent),
+          shadowColor: WidgetStateProperty.all(Colors.transparent),
+          overlayColor: WidgetStateProperty.all(
+            Colors.white.withValues(alpha: 0.1),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (hasIcon && icon != null) ...[
+              Icon(
+                icon!,
+                color: iconColor,
+                size: fontSize + 4,
+              ),
+              const SizedBox(width: 8),
+            ],
+            Flexible(
+              child: Text(
+                text,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.jetBrainsMono(
+                  color: effectiveTextColor,
+                  fontSize: fontSize,
+                  fontWeight: fontweight,
+                  letterSpacing: 0.4,
+                ),
               ),
             ),
-            minimumSize: MaterialStateProperty.all(Size(width, height)),
-            backgroundColor: hasGradient
-                ? MaterialStateProperty.all(Colors.transparent)
-                : MaterialStateProperty.all(backgroundColor),
-            // elevation: MaterialStateProperty.all(3),
-            shadowColor: MaterialStateProperty.all(Colors.transparent),
-          ),
-          child: hasIcon
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(
-                      icon!,
-                      color: iconColor,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      text,
-                      style: isAvenir
-                          ? TextStyle(
-                              color: textColor,
-                              fontFamily: "Avenir",
-                              fontSize: fontSize,
-                              fontWeight: fontweight,
-                            )
-                          : TextStyle(
-                              color: textColor, fontSize: fontSize,
-                              fontWeight: fontweight,
-
-                              // fontFamily:
-                            ),
-                    ),
-                  ],
-                )
-              : Text(
-                  text,
-                  style: isAvenir
-                      ? TextStyle(
-                          color: textColor,
-                          fontSize: fontSize,
-                          fontFamily: "Avenir",
-                          fontWeight: fontweight,
-                        )
-                      : TextStyle(
-                          color: textColor, fontSize: fontSize,
-                          fontWeight: fontweight,
-
-                          // fontFamily:
-                        ),
-                ),
+          ],
         ),
       ),
     );
