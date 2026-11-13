@@ -451,11 +451,11 @@ class _LandingPageState extends State<LandingPage>
               children: const [
                 TextSpan(
                   text: "const ",
-                  style: TextStyle(color: Color(0xFFFF2A54)),
+                  style: TextStyle(color: Color(0xFFFF6B81)),
                 ),
                 TextSpan(
                   text: "developer ",
-                  style: TextStyle(color: Color(0xFFFB7185)),
+                  style: TextStyle(color: Color(0xFFFF9EAB)),
                 ),
                 TextSpan(text: "= (\n"),
                 TextSpan(

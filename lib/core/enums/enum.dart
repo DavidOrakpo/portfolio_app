@@ -9,7 +9,7 @@ enum ContactInformation {
     subtitle: "David Orakpo",
     widget: Icon(
       Icons.person_rounded,
-      color: Color(0xFFFF2A54),
+      color: Color(0xFFFF6B81),
       size: 24,
     ),
   ),
@@ -19,7 +19,7 @@ enum ContactInformation {
     widget: Icon(
       Icons.email_rounded,
       size: 24,
-      color: Color(0xFFFF2A54),
+      color: Color(0xFFFF6B81),
     ),
   ),
   Address(
@@ -27,7 +27,7 @@ enum ContactInformation {
     subtitle: "Anthony Village, Ikeja, Lagos",
     widget: Icon(
       Icons.location_city_rounded,
-      color: Color(0xFFFF2A54),
+      color: Color(0xFFFF6B81),
       size: 24,
     ),
   ),
@@ -36,7 +36,7 @@ enum ContactInformation {
     subtitle: "+234 802 921 4383",
     widget: Icon(
       Icons.phone_rounded,
-      color: Color(0xFFFF2A54),
+      color: Color(0xFFFF6B81),
       size: 24,
     ),
   ),
@@ -46,7 +46,7 @@ enum ContactInformation {
         "B.Sc. Computer Science (University of the People) · B.Sc. Microbiology (Redeemer's University)",
     widget: Icon(
       Icons.school_rounded,
-      color: Color(0xFFFF2A54),
+      color: Color(0xFFFF6B81),
       size: 24,
     ),
   );
@@ -66,7 +66,7 @@ enum SocialInformation {
     subtitle: "David Orakpo",
     widget: FaIcon(
       FontAwesomeIcons.slack,
-      color: Color(0xFFFF2A54),
+      color: Color(0xFFFF6B81),
       size: 22,
     ),
   ),
@@ -76,7 +76,7 @@ enum SocialInformation {
     widget: FaIcon(
       FontAwesomeIcons.github,
       size: 22,
-      color: Color(0xFFFF2A54),
+      color: Color(0xFFFF6B81),
     ),
   ),
   LinkedIn(
@@ -84,7 +84,7 @@ enum SocialInformation {
     subtitle: "https://www.linkedin.com/in/davidorakpo",
     widget: FaIcon(
       FontAwesomeIcons.linkedinIn,
-      color: Color(0xFFFF2A54),
+      color: Color(0xFFFF6B81),
       size: 22,
     ),
   ),
@@ -93,7 +93,7 @@ enum SocialInformation {
     subtitle: "https://twitter.com/DavidOrakpo",
     widget: FaIcon(
       FontAwesomeIcons.twitter,
-      color: Color(0xFFFF2A54),
+      color: Color(0xFFFF6B81),
       size: 22,
     ),
   );
