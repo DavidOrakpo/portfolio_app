@@ -32,6 +32,9 @@ class TechColors {
 }
 
 class Styles {
+  static ThemeData? _cachedDarkTheme;
+  static ThemeData? _cachedLightTheme;
+
   static ThemeData flexThemeData(bool isDarkTheme, BuildContext context) {
     return isDarkTheme
         ? FlexThemeData.dark(
@@ -56,6 +59,14 @@ class Styles {
   }
 
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
+    if (isDarkTheme) {
+      return _cachedDarkTheme ??= _buildTheme(true);
+    } else {
+      return _cachedLightTheme ??= _buildTheme(false);
+    }
+  }
+
+  static ThemeData _buildTheme(bool isDarkTheme) {
     final baseTextTheme = isDarkTheme
         ? ThemeData.dark().textTheme
         : ThemeData.light().textTheme;

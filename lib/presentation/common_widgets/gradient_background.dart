@@ -46,10 +46,12 @@ class GradientBackground extends StatelessWidget {
           ),
         ),
         Positioned.fill(
-          child: CustomPaint(
-            painter: _CyberGridPainter(
-              isDark: isDark,
-              accentColor: primaryAccent,
+          child: RepaintBoundary(
+            child: CustomPaint(
+              painter: _CyberGridPainter(
+                isDark: isDark,
+                accentColor: primaryAccent,
+              ),
             ),
           ),
         ),

@@ -22,6 +22,7 @@ class HomeTabManager extends StatefulWidget {
 
 class _HomeTabManagerState extends State<HomeTabManager> {
   int homeTabPageIndex = 0;
+  final Set<int> _visitedTabs = {0};
 
   static const List<({String label, String path, IconData icon})> _tabs = [
     (label: "About Me", path: "about_me", icon: Icons.person_rounded),
@@ -29,6 +30,32 @@ class _HomeTabManagerState extends State<HomeTabManager> {
     (label: "Portfolio", path: "projects", icon: Icons.workspaces_rounded),
     (label: "System", path: "system_cfg", icon: Icons.settings_rounded),
   ];
+
+  void _selectTab(int index) {
+    if (homeTabPageIndex == index) return;
+    setState(() {
+      homeTabPageIndex = index;
+      _visitedTabs.add(index);
+    });
+  }
+
+  Widget _buildTabContent(int index) {
+    if (!_visitedTabs.contains(index)) {
+      return const SizedBox.shrink();
+    }
+    switch (index) {
+      case 0:
+        return const AboutMePage();
+      case 1:
+        return const ExperiencePage();
+      case 2:
+        return const PortfolioPage();
+      case 3:
+        return const SettingsPage();
+      default:
+        return const SizedBox.shrink();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,11 +86,11 @@ class _HomeTabManagerState extends State<HomeTabManager> {
                     children: [
                       IndexedStack(
                         index: homeTabPageIndex,
-                        children: const [
-                          AboutMePage(),
-                          ExperiencePage(),
-                          PortfolioPage(),
-                          SettingsPage(),
+                        children: [
+                          _buildTabContent(0),
+                          _buildTabContent(1),
+                          _buildTabContent(2),
+                          _buildTabContent(3),
                         ],
                       ),
                       if (isMobile)
@@ -161,7 +188,7 @@ class _HomeTabManagerState extends State<HomeTabManager> {
                 return Padding(
                   padding: const EdgeInsets.only(left: 8),
                   child: InkWell(
-                    onTap: () => setState(() => homeTabPageIndex = index),
+                    onTap: () => _selectTab(index),
                     borderRadius: BorderRadius.circular(8),
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 200),
@@ -277,11 +304,7 @@ class _HomeTabManagerState extends State<HomeTabManager> {
                 selectedColor: accent,
                 unSelectedColor: Theme.of(context).unselectedWidgetColor,
                 largeText: true,
-                onTap: () {
-                  setState(() {
-                    homeTabPageIndex = index;
-                  });
-                },
+                onTap: () => _selectTab(index),
               ),
             );
           }),

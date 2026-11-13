@@ -101,6 +101,10 @@ class ExperienceTile extends StatelessWidget {
                       fit: BoxFit.contain,
                       height: 150,
                       width: double.infinity,
+                      cacheHeight:
+                          (150 * MediaQuery.devicePixelRatioOf(context))
+                              .round(),
+                      filterQuality: FilterQuality.medium,
                     )
                   : _buildGeneratedCompanyBanner(item, accent),
             ),

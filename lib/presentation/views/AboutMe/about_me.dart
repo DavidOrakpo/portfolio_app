@@ -277,6 +277,10 @@ class _AboutMePageState extends State<AboutMePage> {
               height: isMobile ? 235 : 280,
               fit: BoxFit.contain,
               alignment: Alignment.bottomCenter,
+              cacheHeight: ((isMobile ? 235 : 280) *
+                      MediaQuery.devicePixelRatioOf(context))
+                  .round(),
+              filterQuality: FilterQuality.medium,
             ),
           ),
         ],

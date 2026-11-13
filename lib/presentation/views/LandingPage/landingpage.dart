@@ -4,6 +4,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:portfolio_app/core/StateManagement/dark_theme_provider.dart';
 import 'package:portfolio_app/core/themes/styles.dart';
 import 'package:portfolio_app/core/utility/responsive/responsive.dart';
+import 'package:portfolio_app/core/utility/routes/routes_manager.dart';
 import 'package:portfolio_app/presentation/common_widgets/custom_button.dart';
 import 'package:portfolio_app/presentation/common_widgets/gradient_background.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +28,11 @@ class _LandingPageState extends State<LandingPage>
       vsync: this,
       duration: const Duration(seconds: 2),
     )..repeat(reverse: true);
+
+    // Pre-warm the deferred HomeTabManager bundle right after the first frame paints
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      RouteGenerator.preloadHome();
+    });
   }
 
   @override
@@ -193,7 +199,9 @@ class _LandingPageState extends State<LandingPage>
               ),
               const SizedBox(width: 10),
               IconButton(
-                tooltip: isDark ? "Switch to Blueprint Light" : "Switch to Cyber Dark",
+                tooltip: isDark
+                    ? "Switch to Blueprint Light"
+                    : "Switch to Cyber Dark",
                 onPressed: themeProvider.toggleTheme,
                 icon: Icon(
                   isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
@@ -302,7 +310,8 @@ class _LandingPageState extends State<LandingPage>
               fontSize: 13,
               fontweight: FontWeight.w700,
               onPressed: () {
-                _openUrl(Uri.https("resume.creddle.io", "/resume/16z9nfhzy0x"));
+                _openUrl(Uri.dataFromString(
+                    "https://drive.google.com/drive/folders/184vxd888F-vlvzQZLJ8nK7gTlR1ApUY3?usp=sharing"));
               },
             ),
           ],
@@ -553,6 +562,10 @@ class _LandingPageState extends State<LandingPage>
                 "assets/images/image_profile.png",
                 fit: BoxFit.contain,
                 alignment: Alignment.bottomCenter,
+                cacheHeight: ((isMobile ? 260 : 340) *
+                        MediaQuery.devicePixelRatioOf(context))
+                    .round(),
+                filterQuality: FilterQuality.medium,
               ),
             ),
           ),
