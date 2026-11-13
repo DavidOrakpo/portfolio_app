@@ -570,35 +570,39 @@ class _LandingPageState extends State<LandingPage>
             ),
           ),
           const SizedBox(height: 16),
-          Row(
-            children: [
-              Expanded(
-                child: _buildMetricChip(
-                  label: "EXPERIENCE",
-                  value: "7+ ROLES",
-                  accent: accent,
-                  isDark: isDark,
+          IntrinsicHeight(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: _buildMetricChip(
+                    label: "EXPERIENCE",
+                    value: "7+ ROLES",
+                    accent: accent,
+                    isDark: isDark,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: _buildMetricChip(
-                  label: "SHOWCASE",
-                  value: "7 LIVE DEMOS",
-                  accent: accent,
-                  isDark: isDark,
+                const SizedBox(width: 10),
+                Expanded(
+                  child: _buildMetricChip(
+                    label: "SHOWCASE",
+                    value: "7 LIVE DEMOS",
+                    accent: accent,
+                    isDark: isDark,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: _buildMetricChip(
-                  label: "PLATFORMS",
-                  value: "MOBILE + WEB",
-                  accent: accent,
-                  isDark: isDark,
+                const SizedBox(width: 10),
+                Expanded(
+                  child: _buildMetricChip(
+                    label: "PLATFORMS",
+                    value: "MOBILE + WEB",
+                    accent: accent,
+                    isDark: isDark,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
@@ -623,6 +627,8 @@ class _LandingPageState extends State<LandingPage>
         ),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             value,

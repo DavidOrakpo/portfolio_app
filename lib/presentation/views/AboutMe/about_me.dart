@@ -66,7 +66,9 @@ class _AboutMePageState extends State<AboutMePage> {
                     children: [
                       Expanded(
                         child: BasicInformationTile(
-                          contactinfoLists: const [...ContactInformation.values],
+                          contactinfoLists: const [
+                            ...ContactInformation.values
+                          ],
                         ),
                       ),
                       const SizedBox(width: 24),
@@ -332,14 +334,16 @@ class _AboutMePageState extends State<AboutMePage> {
         children: [
           Icon(icon, size: 15, color: accent),
           const SizedBox(width: 8),
-          Text(
-            label,
-            style: GoogleFonts.jetBrainsMono(
-              fontSize: 11,
-              fontWeight: FontWeight.w500,
-              color: isDark
-                  ? TechColors.darkTextPrimary
-                  : TechColors.lightTextPrimary,
+          Flexible(
+            child: Text(
+              label,
+              style: GoogleFonts.jetBrainsMono(
+                fontSize: 11,
+                fontWeight: FontWeight.w500,
+                color: isDark
+                    ? TechColors.darkTextPrimary
+                    : TechColors.lightTextPrimary,
+              ),
             ),
           ),
         ],
