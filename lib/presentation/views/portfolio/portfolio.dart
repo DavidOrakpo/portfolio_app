@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:portfolio_app/core/enums/enum.dart';
 import 'package:portfolio_app/core/themes/styles.dart';
 import 'package:portfolio_app/core/utility/responsive/responsive.dart';
 import 'package:portfolio_app/presentation/common_widgets/gradient_background.dart';
@@ -19,56 +20,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
   PageController? _pageController;
   double _currentViewportFraction = 0.85;
 
-  static const List<
-      ({
-        String title,
-        String category,
-        String techStack,
-        String videoPath,
-      })> _projects = [
-    (
-      title: "Baby Cry",
-      category: "HEALTHCARE // DIAGNOSTICS",
-      techStack: "Flutter · Dart · Audio Analysis",
-      videoPath: "assets/videos/health.mp4",
-    ),
-    (
-      title: "HMS",
-      category: "ENTERPRISE // HEALTH",
-      techStack: "Flutter · REST API · Provider",
-      videoPath: "assets/videos/hms.mp4",
-    ),
-    (
-      title: "Art Gallery",
-      category: "DIGITAL EXHIBITION",
-      techStack: "Flutter · Custom Animations · UI/UX",
-      videoPath: "assets/videos/art_gallery.mp4",
-    ),
-    (
-      title: "EatOnGate",
-      category: "COMMERCE // LOGISTICS",
-      techStack: "Flutter · Maps · Real-time Order Flow",
-      videoPath: "assets/videos/eatongate.mp4",
-    ),
-    (
-      title: "Four Points",
-      category: "HOSPITALITY // BOOKING",
-      techStack: "Flutter · Clean Architecture · REST",
-      videoPath: "assets/videos/four_points.mp4",
-    ),
-    (
-      title: "Hope Clinic",
-      category: "TELEMEDICINE // PORTAL",
-      techStack: "Flutter · Appointment Scheduling",
-      videoPath: "assets/videos/hope_clinic.mp4",
-    ),
-    (
-      title: "Whollet Crypto",
-      category: "FINTECH // WEB3 WALLET",
-      techStack: "Cross-Platform · Crypto Asset Tracker",
-      videoPath: "assets/videos/whollet.mp4",
-    ),
-  ];
+  static const List<PortfolioProjects> _projects = PortfolioProjects.values;
 
   void _ensurePageController(double fraction) {
     if (_pageController == null ||
@@ -137,9 +89,8 @@ class _PortfolioPageState extends State<PortfolioPage> {
                     title: "INTERACTIVE PROJECT CAROUSEL",
                     subtitle:
                         "Swipe, drag, or use the deck controls to inspect live application builds.",
-                    trailing: !isMobile
-                        ? _buildArrowControls(isDark, accent)
-                        : null,
+                    trailing:
+                        !isMobile ? _buildArrowControls(isDark, accent) : null,
                   ),
                 ),
                 const SizedBox(height: 18),

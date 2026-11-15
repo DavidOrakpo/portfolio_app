@@ -9,6 +9,7 @@ import 'package:portfolio_app/presentation/common_widgets/custom_button.dart';
 import 'package:portfolio_app/presentation/common_widgets/gradient_background.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -310,8 +311,9 @@ class _LandingPageState extends State<LandingPage>
               fontSize: 13,
               fontweight: FontWeight.w700,
               onPressed: () {
-                _openUrl(Uri.dataFromString(
-                    "https://drive.google.com/drive/folders/184vxd888F-vlvzQZLJ8nK7gTlR1ApUY3?usp=sharing"));
+                launchUrlString(
+                    "https://drive.google.com/drive/folders/184vxd888F-vlvzQZLJ8nK7gTlR1ApUY3?usp=sharing");
+                // _openUrl(Uri.dataFromString());
               },
             ),
           ],

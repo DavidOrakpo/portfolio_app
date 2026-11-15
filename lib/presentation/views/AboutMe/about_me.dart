@@ -8,6 +8,7 @@ import 'package:portfolio_app/presentation/common_widgets/gradient_background.da
 import 'package:portfolio_app/presentation/views/AboutMe/widgets/information_expansion_tile.dart';
 import 'package:portfolio_app/presentation/views/AboutMe/widgets/skills_tile.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class AboutMePage extends StatefulWidget {
   const AboutMePage({super.key});
@@ -212,10 +213,8 @@ class _AboutMePageState extends State<AboutMePage> {
               fontSize: 12,
               fontweight: FontWeight.w700,
               onPressed: () async {
-                await launchUrl(
-                  Uri.https("resume.creddle.io", "/resume/16z9nfhzy0x"),
-                  mode: LaunchMode.externalApplication,
-                );
+                launchUrlString(
+                    "https://drive.google.com/drive/folders/184vxd888F-vlvzQZLJ8nK7gTlR1ApUY3?usp=sharing");
               },
             ),
             CustomButton(

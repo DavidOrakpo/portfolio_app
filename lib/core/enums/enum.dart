@@ -212,3 +212,58 @@ enum Companies {
   final List<String> listOfDuties;
   final String? nameOfCompany, jobPosition, date, address, imagePath, appLink;
 }
+
+/// Deployed portfolio builds showcased in the portfolio carousel.
+enum PortfolioProjects {
+  BabyCry(
+    title: "Baby Cry",
+    category: "HEALTHCARE // DIAGNOSTICS",
+    techStack: "Flutter · Dart · Audio Analysis",
+    videoPath: "assets/videos/health.mp4",
+  ),
+  HMS(
+    title: "HMS",
+    category: "ENTERPRISE // HEALTH",
+    techStack: "Flutter · REST API · Provider",
+    videoPath: "assets/videos/hms.mp4",
+  ),
+  ArtGallery(
+    title: "Art Gallery",
+    category: "DIGITAL EXHIBITION",
+    techStack: "Flutter · Custom Animations · UI/UX",
+    videoPath: "assets/videos/art_gallery.mp4",
+  ),
+  EatOnGate(
+    title: "EatOnGate",
+    category: "COMMERCE // LOGISTICS",
+    techStack: "Flutter · Maps · Real-time Order Flow",
+    videoPath: "assets/videos/eatongate.mp4",
+  ),
+  FourPoints(
+    title: "Four Points",
+    category: "HOSPITALITY // BOOKING",
+    techStack: "Flutter · Clean Architecture · REST",
+    videoPath: "assets/videos/four_points.mp4",
+  ),
+  HopeClinic(
+    title: "Hope Clinic",
+    category: "TELEMEDICINE // PORTAL",
+    techStack: "Flutter · Appointment Scheduling",
+    videoPath: "assets/videos/hope_clinic.mp4",
+  ),
+  WholletCrypto(
+    title: "Whollet Crypto",
+    category: "FINTECH // WEB3 WALLET",
+    techStack: "Cross-Platform · Crypto Asset Tracker",
+    videoPath: "assets/videos/whollet.mp4",
+  );
+
+  const PortfolioProjects({
+    required this.title,
+    required this.category,
+    required this.techStack,
+    required this.videoPath,
+  });
+
+  final String title, category, techStack, videoPath;
+}
